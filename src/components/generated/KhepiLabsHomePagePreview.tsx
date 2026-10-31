@@ -162,9 +162,8 @@ function ProductIcon({
   item: Entry;
   large?: boolean;
 }) {
-  return <div className={large ? "kl-product-icon large" : "kl-product-icon"} style={{
-    background: item.iconBg || "linear-gradient(135deg,#65758c,#293548)"
-  }}>{item.icon || item.name.slice(0, 1)}</div>;
+  const iconIsImage = !!item.icon && /^(https?:|data:image\\/)/i.test(item.icon);
+  return <div className={large ? "kl-product-icon large" : "kl-product-icon"} style={{background:item.iconBg || "linear-gradient(135deg,#65758c,#293548)"}}>{iconIsImage?<img src={item.icon} alt="" loading="lazy"/>:item.icon||item.name.slice(0,1)}</div>;
 }
 export function KhepiLabsHomePagePreview() {
   const [items, setItems] = useState<Entry[]>(() => {
