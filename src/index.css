@@ -578,3 +578,51 @@ main{max-width:1320px}
 .kl-card-standard .kl-card-body p{-webkit-line-clamp:2}
 .kl-card:hover{transform:translateY(-3px)}
 @media(max-width:620px){.kl-product-grid{grid-template-columns:1fr;gap:11px}.kl-card-featured{grid-template-columns:88px 1fr;min-height:150px}.kl-card-featured .kl-card-top{padding:12px}.kl-card-featured .kl-product-icon{width:56px;height:56px;border-radius:17px;font-size:22px}.kl-card-featured .kl-card-body{padding:18px 14px}.kl-card-featured .kl-card-body h3{font-size:17px}.kl-card-featured .kl-card-body p{font-size:10px}.kl-card-featured:after{top:8px;left:8px;font-size:6px;padding:4px 6px}.kl-card-compact{grid-template-columns:70px 1fr;min-height:118px}.kl-card-compact .kl-card-top{padding:10px}.kl-card-compact .kl-card-body{padding:13px}.kl-card-standard .kl-card-top{min-height:82px}}
+
+
+/* User-selectable discovery layouts */
+.kl-view-switch{display:flex;align-items:center;gap:4px;padding:4px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.035)}
+.kl-view-switch button{min-width:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px 8px;border:0;border-radius:9px;background:transparent;color:var(--muted);cursor:pointer;transition:background .2s,color .2s}
+.kl-view-switch button span{font-size:17px;line-height:1}
+.kl-view-switch button small{font-size:8px;letter-spacing:.35px}
+.kl-view-switch button.active{background:rgba(125,108,255,.18);color:var(--text);box-shadow:inset 0 0 0 1px rgba(145,130,255,.25)}
+.kl-toolbar{flex-wrap:wrap}
+.kl-view-list{grid-template-columns:1fr!important;gap:10px!important}
+.kl-view-list .kl-card{display:grid!important;grid-template-columns:88px minmax(0,1fr);min-height:112px;grid-column:auto!important}
+.kl-view-list .kl-card:after{display:none}
+.kl-view-list .kl-card-top{min-height:0!important;padding:14px;display:grid;place-items:center;border-right:1px solid var(--line)}
+.kl-view-list .kl-product-icon{width:54px;height:54px;border-radius:17px;font-size:21px}
+.kl-view-list .kl-card-body{padding:14px 18px!important;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.kl-view-list .kl-card-body h3{font-size:16px;margin:5px 0}
+.kl-view-list .kl-card-body p{font-size:10px;-webkit-line-clamp:1}
+.kl-view-list .kl-card-foot{margin-top:8px}
+.kl-view-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:13px!important}
+.kl-view-grid .kl-card{display:flex!important;flex-direction:column;grid-column:auto!important;min-height:0}
+.kl-view-grid .kl-card:after{display:none}
+.kl-view-grid .kl-card-top{min-height:94px!important;padding:16px;display:flex;align-items:center}
+.kl-view-grid .kl-card-body{padding:14px 16px!important}
+.kl-view-grid .kl-card-body h3{font-size:15px}
+.kl-view-grid .kl-card-body p{font-size:10px;-webkit-line-clamp:2}
+.kl-view-card{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important}
+.kl-view-card .kl-card{display:flex!important;flex-direction:column;grid-column:auto!important;min-height:250px}
+.kl-view-card .kl-card:after{display:none}
+.kl-view-card .kl-card-top{min-height:132px!important;padding:22px;display:flex;align-items:center}
+.kl-view-card .kl-product-icon{width:72px;height:72px;border-radius:23px;font-size:28px}
+.kl-view-card .kl-card-body{padding:20px 22px!important}
+.kl-view-card .kl-card-body h3{font-size:19px}
+.kl-view-card .kl-card-body p{font-size:11px;-webkit-line-clamp:3}
+@media(max-width:760px){.kl-view-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:620px){
+ .kl-toolbar{align-items:stretch}
+ .kl-view-switch{order:3;width:100%;justify-content:space-between}
+ .kl-view-switch button{flex:1}
+ .kl-view-list .kl-card{grid-template-columns:68px minmax(0,1fr)}
+ .kl-view-list .kl-card-top{padding:9px}
+ .kl-view-list .kl-card-body{padding:12px!important}
+ .kl-view-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+ .kl-view-grid .kl-card-top{min-height:78px!important;padding:10px}
+ .kl-view-grid .kl-card-body{padding:11px!important}
+ .kl-view-card{grid-template-columns:1fr!important;gap:11px!important}
+ .kl-view-card .kl-card{min-height:0}
+ .kl-view-card .kl-card-top{min-height:100px!important}
+}
