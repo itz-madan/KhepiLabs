@@ -4,7 +4,7 @@ import { supabase } from "../lib/supabase";
 import { getAdminProfile } from "../lib/catalogue";
 import "../auth.css";
 
-export function AdminGate({ children }: { children: React.ReactNode }) {
+export function AdminGate({ children }: { children: React.ReactNode | ((session:{role:string;userId:string})=>React.ReactNode) }) {
   const [checking,setChecking]=useState(true);
   const [sessionUser,setSessionUser]=useState<any>(null);
   const [email,setEmail]=useState("");
@@ -36,7 +36,7 @@ export function AdminGate({ children }: { children: React.ReactNode }) {
     setBusy(false);
   };
   if(checking)return <div className="kag-screen"><div className="kag-card"><div className="kag-mark">K</div><h2>Checking secure session</h2><p>Verifying your KhepiLabs administrator access…</p></div></div>;
-  if(sessionUser)return <>{children}</>;
+  if(sessionUser)return <>{typeof children === "function" ? children({role:sessionUser.role,userId:sessionUser.id}) : children}</>;
   return <div className="kag-screen"><form className="kag-card" onSubmit={login}>
     <div className="kag-mark">K</div><div className="kag-eyebrow"><ShieldCheck size={14}/> SECURE ADMIN ACCESS</div>
     <h1>Welcome back<span>.</span></h1><p>Sign in with your authorised KhepiLabs administrator account.</p>
