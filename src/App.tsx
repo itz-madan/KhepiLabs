@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { KhepiLabsHomePagePreview } from './components/generated/KhepiLabsHomePagePreview';
 import { PublicPage } from './components/PublicPage';
+import { AdminPanel } from './components/AdminPanel';
+import './admin.css';
 
 function readRoute() {
   const hash = window.location.hash.replace(/^#/, '');
@@ -17,6 +19,7 @@ function App() {
     window.addEventListener('popstate', sync);
     return () => { window.removeEventListener('hashchange', sync); window.removeEventListener('popstate', sync); };
   }, []);
+  if (route === '/admin') return <AdminPanel />;
   if (route === '/') return <KhepiLabsHomePagePreview />;
   return <PublicPage route={route} />;
 }
