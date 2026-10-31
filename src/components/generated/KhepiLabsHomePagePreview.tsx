@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { fetchPublishedApps, subscribeToApps } from "../../lib/catalogue";
+import { supabase } from "../../lib/supabase";
 type Entry = {
   id: string;
   name: string;
@@ -198,6 +199,18 @@ export function KhepiLabsHomePagePreview() {
       void channel.unsubscribe();
     };
   }, []);
+  useEffect(() => {
+    let alive = true;
+    const loadCategories = async () => {
+      const { data, error } = await supabase.from("categories").select("id,data").order("updated_at", { ascending: false });
+      if (error) { console.warn("Could not load KhepiLabs categories", error); return; }
+      const names = (data || []).map((row:any) => row.data?.name || row.data?.title || row.data?.label || row.data?.category).filter((name:any): name is string => typeof name === "string" && name.trim().length > 0);
+      if (alive && names.length) setCategoryOptions(["All", ...Array.from(new Set(names))]);
+    };
+    void loadCategories();
+    const channel = supabase.channel("khepilabs-public-categories").on("postgres_changes", {event:"*",schema:"public",table:"categories"}, () => void loadCategories()).subscribe();
+    return () => { alive = false; void supabase.removeChannel(channel); };
+  }, []);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const detailCloseRef = useRef<HTMLButtonElement>(null);
   const detailOpenerRef = useRef<HTMLElement | null>(null);
@@ -206,6 +219,7 @@ export function KhepiLabsHomePagePreview() {
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
+  const [categoryOptions, setCategoryOptions] = useState<string[]>(categories);
   const [active, setActive] = useState<"All" | "Apps" | "Games">("All");
   const [slide, setSlide] = useState(0);
   const [detail, setDetail] = useState<Entry | null>(null);
@@ -424,7 +438,7 @@ export function KhepiLabsHomePagePreview() {
       </section>}
       <section className="kl-catalog" id="catalog">
         <div className="kl-catalog-heading"><div><div className="kl-eyebrow">THE COLLECTION</div><h2>Explore the good stuff<span>.</span></h2><p>Useful finds, without the endless scrolling.</p></div><div className="kl-catalog-count"><b>{filtered.length.toString().padStart(2, "0")}</b><span>RESULTS</span></div></div>
-        <div className="kl-toolbar"><div className="kl-tabs"><button className={active === "All" ? "active" : ""} onClick={() => setActive("All")}>Everything</button><button className={active === "Apps" ? "active" : ""} onClick={() => setActive("Apps")}>Apps</button><button className={active === "Games" ? "active" : ""} onClick={() => setActive("Games")}>Games</button></div><div className="kl-view-switch" role="group" aria-label="Choose app layout">{(["list", "grid", "card", "mixed"] as const).map(mode => <button key={mode} type="button" className={viewMode === mode ? "active" : ""} aria-pressed={viewMode === mode} onClick={() => setViewMode(mode)} title={mode[0].toUpperCase() + mode.slice(1)}><span aria-hidden="true">{mode === "list" ? "☷" : mode === "grid" ? "▦" : mode === "card" ? "▣" : "◫"}</span><small>{mode[0].toUpperCase() + mode.slice(1)}</small></button>)}</div><div className="kl-category-select"><span>FILTER BY</span><div className="kl-filter-control"><button className={filterOpen ? "kl-filter-trigger open" : "kl-filter-trigger"} onClick={() => setFilterOpen(!filterOpen)} aria-expanded={filterOpen}><span>{category === "All" ? "All categories" : category}</span><b>⌄</b></button>{filterOpen && <><button className="kl-filter-dismiss" aria-label="Close filters" onClick={() => setFilterOpen(false)} /><div className="kl-filter-menu">{categories.map(c => <button key={c} className={category === c ? "chosen" : ""} onClick={() => {
+        <div className="kl-toolbar"><div className="kl-tabs"><button className={active === "All" ? "active" : ""} onClick={() => setActive("All")}>Everything</button><button className={active === "Apps" ? "active" : ""} onClick={() => setActive("Apps")}>Apps</button><button className={active === "Games" ? "active" : ""} onClick={() => setActive("Games")}>Games</button></div><div className="kl-view-switch" role="group" aria-label="Choose app layout">{(["list", "grid", "card", "mixed"] as const).map(mode => <button key={mode} type="button" className={viewMode === mode ? "active" : ""} aria-pressed={viewMode === mode} onClick={() => setViewMode(mode)} title={mode[0].toUpperCase() + mode.slice(1)}><span aria-hidden="true">{mode === "list" ? "☷" : mode === "grid" ? "▦" : mode === "card" ? "▣" : "◫"}</span><small>{mode[0].toUpperCase() + mode.slice(1)}</small></button>)}</div><div className="kl-category-select"><span>FILTER BY</span><div className="kl-filter-control"><button className={filterOpen ? "kl-filter-trigger open" : "kl-filter-trigger"} onClick={() => setFilterOpen(!filterOpen)} aria-expanded={filterOpen}><span>{category === "All" ? "All categories" : category}</span><b>⌄</b></button>{filterOpen && <><button className="kl-filter-dismiss" aria-label="Close filters" onClick={() => setFilterOpen(false)} /><div className="kl-filter-menu">{categoryOptions.map(c => <button key={c} className={category === c ? "chosen" : ""} onClick={() => {
                     setCategory(c);
                     setFilterOpen(false);
                   }}>{c}<span>{category === c ? "✓" : ""}</span></button>)}</div></>}</div></div></div>
