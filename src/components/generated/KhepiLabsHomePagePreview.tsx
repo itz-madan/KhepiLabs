@@ -406,7 +406,7 @@ export function KhepiLabsHomePagePreview() {
                     setCategory(c);
                     setFilterOpen(false);
                   }}>{c}<span>{category === c ? "✓" : ""}</span></button>)}</div></>}</div></div></div>
-        <div className="kl-product-grid">{filtered.map((p, i) => <article key={p.id} className="kl-card" role="button" tabIndex={0} aria-label={"View " + p.name + " details"} style={{
+        <div className="kl-product-grid">{filtered.map((p, i) => <article key={p.id} className={"kl-card " + (i === 0 ? "kl-card-featured" : i % 4 === 3 ? "kl-card-compact" : "kl-card-standard")} role="button" tabIndex={0} aria-label={"View " + p.name + " details"} style={{
             animationDelay: i * 55 + "ms"
           }} onClick={() => open(p)} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(p); } }}><div className="kl-card-top"><ProductIcon item={p} /><span className="kl-card-arrow">↗</span></div><div className="kl-card-body"><div className="kl-card-kicker">{p.kind} <i /> {p.category}</div><h3>{p.name}</h3><p>{p.description}</p><div className="kl-card-foot"><span>{p.version ? "v" + p.version : "Latest"}</span><span>{p.rating ? "★ " + p.rating : "Discover"}</span></div></div></article>)}</div>
         {!filtered.length && <div className="kl-empty"><span>⌕</span><h3>No matches just yet.</h3><p>Try another search or choose a different category.</p><button onClick={() => {
