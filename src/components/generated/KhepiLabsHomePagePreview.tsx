@@ -218,6 +218,8 @@ export function KhepiLabsHomePagePreview() {
   const openedDetailInAppRef = useRef(false);
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState("");
+  const [searchFocused, setSearchFocused] = useState(false);
+  const [viewMenuOpen, setViewMenuOpen] = useState(false);
   const [category, setCategory] = useState("All");
   const [categoryOptions, setCategoryOptions] = useState<string[]>(categories);
   const [active, setActive] = useState<"All" | "Apps" | "Games">("All");
@@ -337,6 +339,11 @@ export function KhepiLabsHomePagePreview() {
       detailOpenerRef.current = null;
     }
   }, [detail]);
+  const searchMatches = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    if (!query) return [];
+    return published.map(item => ({item, score: [item.name,item.category,item.developer||"",item.kind,item.description||"",item.version||""].reduce((score,value,index)=>{const v=value.toLowerCase();return score+(v===query?5:v.startsWith(query)?4:v.includes(query)?(index<3?3:1):0);},0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,5).map(x=>x.item);
+  }, [published, search]);
   const filtered = useMemo(() => {
     const query = search.trim().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase();
     return published.filter((x) => {
@@ -420,10 +427,7 @@ export function KhepiLabsHomePagePreview() {
           <div className="kl-eyebrow"><span className="kl-live-dot" /> THE BETTER WAY TO DISCOVER</div>
           <h1>Find your next<br /><em>favourite.</em></h1>
           <p>Thoughtfully selected apps, games and digital tools.<br className="kl-desktop" /> Discover what’s useful. Keep what you love.</p>
-          <div className="kl-search-wrap"><Icon>⌕</Icon><input ref={searchInputRef} value={search} onChange={e => {
-              setSearch(e.target.value);
-              scrollToCatalog();
-            }} placeholder="Search apps, games, tools..." aria-label="Search apps and games" /><kbd>⌘ K</kbd><button onClick={scrollToCatalog}>Explore <span>↗</span></button></div>
+          <div className="kl-search-shell"><div className="kl-search-wrap"><Icon>⌕</Icon><input ref={searchInputRef} value={search} onFocus={() => setSearchFocused(true)} onBlur={() => window.setTimeout(() => setSearchFocused(false),160)} onChange={e=>setSearch(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"){setSearchFocused(false);scrollToCatalog();}}} placeholder="Search apps, games, developers..." aria-label="Search apps and games"/><kbd>Ctrl K</kbd>{search&&<button className="kl-search-clear" onClick={()=>{setSearch("");searchInputRef.current?.focus();}}>×</button>}<button onClick={()=>{setSearchFocused(false);scrollToCatalog();}}>Search <span>↗</span></button></div>{searchFocused&&search.trim()&&<div className="kl-search-results"><div className="kl-search-results-label">SUGGESTED RESULTS <span>{searchMatches.length} FOUND</span></div>{searchMatches.length?searchMatches.map(item=><button key={item.id} className="kl-search-result" onMouseDown={e=>e.preventDefault()} onClick={()=>{setSearchFocused(false);open(item);}}><ProductIcon item={item}/><span><strong>{item.name}</strong><small>{item.kind} · {item.category}{item.developer?" · "+item.developer:""}</small></span><b>↗</b></button>):<div className="kl-search-no-results">No matching apps found. Press Enter to view results.</div>}<button className="kl-search-all" onMouseDown={e=>e.preventDefault()} onClick={()=>{setSearchFocused(false);scrollToCatalog();}}>View all results for “{search}”</button></div>}</div>
           <div className="kl-hero-meta"><span><b>{published.length.toString().padStart(2, "0")}</b> curated picks</span><i /> <span>Free to explore</span><i /> <span>Always evolving</span></div>
         </div>
         <div className="kl-hero-bottom"><span>SCROLL TO EXPLORE</span><div className="kl-scroll-line" /></div>
