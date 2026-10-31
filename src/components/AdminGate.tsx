@@ -44,6 +44,6 @@ export function AdminGate({ children }: { children: ReactNode | ((session:{role:
     <label>Password<div className="kag-password"><input type={showPassword?"text":"password"} autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)} placeholder="Enter your password"/><button type="button" onClick={()=>setShowPassword(v=>!v)} aria-label="Toggle password visibility">{showPassword?<EyeOff size={17}/>:<Eye size={17}/>}</button></div></label>
     {error&&<div className="kag-error">{error}</div>}
     <button className="kag-submit" disabled={busy}>{busy?"Signing in…":<><LockKeyhole size={16}/> Sign in securely</>}</button>
-    <small>Access is restricted to accounts listed in the admin_profiles table.</small>
+    <small>Access is restricted to accounts listed in the admin_profiles table.</small><a className="kag-back" href="#/">← Back to KhepiLabs website</a>
   </form></div>;
 }
