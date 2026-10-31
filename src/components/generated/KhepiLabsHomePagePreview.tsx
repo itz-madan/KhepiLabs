@@ -355,6 +355,7 @@ export function KhepiLabsHomePagePreview() {
     if (toastTimerRef.current !== null) window.clearTimeout(toastTimerRef.current);
   }, []);
   const open = (p: Entry) => {
+    void supabase.rpc("record_app_view", { p_app_id: p.id }).then(({error}) => { if (error) console.warn("View counter unavailable", error); });
     if (!detail) {
       detailOpenerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     }
@@ -463,7 +464,7 @@ export function KhepiLabsHomePagePreview() {
       <div className="kl-detail-head"><ProductIcon item={detail} large /><div><div className="kl-eyebrow">{detail.kind.toUpperCase()} / {detail.category.toUpperCase()}</div><h2 id="kl-detail-title">{detail.name}</h2><p>{detail.developer || "Independent developer"} {detail.version ? "· Version " + detail.version : ""}</p></div></div>
       {detail.description && <section className="kl-detail-section"><h3>About this {detail.kind.toLowerCase()}</h3><p>{detail.description}</p></section>}
       <div className="kl-detail-meta">{detail.size && <div><small>SIZE</small><b>{detail.size}</b></div>}{detail.rating && <div><small>RATING</small><b>★ {detail.rating}</b></div>}{detail.updated && <div><small>UPDATED</small><b>{detail.updated}</b></div>}</div>
-      {(safeExternalUrl(detail.apk) || safeExternalUrl(detail.play)) && <div className="kl-detail-actions">{safeExternalUrl(detail.apk) && <a className="kl-primary" href={safeExternalUrl(detail.apk)} target="_blank" rel="noopener noreferrer">Download APK ↗</a>}{safeExternalUrl(detail.play) && <a className="kl-secondary" href={safeExternalUrl(detail.play)} target="_blank" rel="noopener noreferrer">Google Play ↗</a>}</div>}
+      {(safeExternalUrl(detail.apk) || safeExternalUrl(detail.play)) && <div className="kl-detail-actions">{safeExternalUrl(detail.apk) && <a className="kl-primary" href={safeExternalUrl(detail.apk)} target="_blank" rel="noopener noreferrer" onClick={()=>{void supabase.rpc("record_app_download",{p_app_id:detail.id});}}>Download APK ↗</a>}{safeExternalUrl(detail.play) && <a className="kl-secondary" href={safeExternalUrl(detail.play)} target="_blank" rel="noopener noreferrer">Google Play ↗</a>}</div>}
       {!!detail.screenshots?.length && <section className="kl-detail-section"><h3>Screenshots</h3><div className="kl-screens">{detail.screenshots.map((s, i) => <img key={i} src={s} alt={detail.name + " screenshot " + (i + 1)} />)}</div></section>}
       {!!detail.changelog?.length && <section className="kl-detail-section"><h3>What’s new</h3><ul>{detail.changelog.map((c, i) => <li key={i}>{c}</li>)}</ul></section>}
       <div className="kl-detail-note">Details and download options are supplied by the publisher.</div>
