@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { KhepiLabsHomePagePreview } from './components/generated/KhepiLabsHomePagePreview';
 import { PublicPage } from './components/PublicPage';
 import { AdminPanel } from './components/AdminPanel';
+import { AdminGate } from './components/AdminGate';
 import './admin.css';
 
 function readRoute() {
@@ -19,7 +20,7 @@ function App() {
     window.addEventListener('popstate', sync);
     return () => { window.removeEventListener('hashchange', sync); window.removeEventListener('popstate', sync); };
   }, []);
-  if (route === '/admin') return <AdminPanel />;
+  if (route === '/admin') return <AdminGate><AdminPanel /></AdminGate>;
   if (route === '/') return <KhepiLabsHomePagePreview />;
   return <PublicPage route={route} />;
 }
