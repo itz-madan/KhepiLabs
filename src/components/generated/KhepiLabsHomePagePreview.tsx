@@ -409,17 +409,10 @@ export function KhepiLabsHomePagePreview() {
         <span className="kl-brand-mark"><span /></span><span>Khepi<span className="kl-brand-accent">Labs</span><small>DISCOVER SOMETHING BETTER</small></span>
       </a>
       <nav id="khepilabs-navigation" aria-label="Main navigation" className={menu ? "kl-nav open" : "kl-nav"}>
-        {["Discover", "Apps", "Games", "Categories"].map((n, i) => <button key={n} className={i === 0 && active === "All" && category === "All" ? "selected" : ""} onClick={() => {
-          if (i === 1) setActive("Apps");else if (i === 2) setActive("Games");else {
-            setActive("All");
-            setCategory("All");
-          }
-          setMenu(false);
-          scrollToCatalog();
-        }}>{n}</button>)}
+        {[["⌂","Home"],["▦","Apps"],["♧","Games"],["▤","Categories"],["◷","Updates"]].map(([ico,n])=><button key={n} className={(n==="Home"&&active==="All"&&category==="All")||(n==="Apps"&&active==="Apps")||(n==="Games"&&active==="Games")?"selected":""} onClick={()=>{if(n==="Apps")setActive("Apps");else if(n==="Games")setActive("Games");else{setActive("All");setCategory("All");}setMenu(false);if(n==="Updates")window.location.hash="#/updates";else if(n!=="Home")scrollToCatalog();else window.scrollTo({top:0,behavior:"smooth"});}}><span className="kl-nav-icon">{ico}</span>{n}</button>)}
       </nav>
-      <a className="kl-home-about-link" href="#/about">About</a>
-      <div className="kl-header-actions"><button className="kl-theme" aria-label="Toggle theme" onClick={() => setDark(!dark)}>{dark ? "☼" : "☾"}</button><button className="kl-menu-toggle" onClick={() => setMenu(!menu)} aria-label="Menu" aria-expanded={menu} aria-controls="khepilabs-navigation">{menu ? "×" : "☰"}</button><button className="kl-submit" onClick={() => notify("Submission portal will be available soon")}>Submit an app <span>↗</span></button></div>
+      <div className="kl-header-search"><Icon>⌕</Icon><input value={search} onFocus={()=>setSearchFocused(true)} onBlur={()=>window.setTimeout(()=>setSearchFocused(false),160)} onChange={e=>setSearch(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"){setSearchFocused(false);scrollToCatalog();}}} placeholder="Search apps, games..." aria-label="Search apps and games"/>{search&&<button aria-label="Clear search" onClick={()=>setSearch("")}>×</button>}{searchFocused&&search.trim()&&<div className="kl-search-results kl-header-search-results"><div className="kl-search-results-label">SUGGESTED RESULTS <span>{searchMatches.length} FOUND</span></div>{searchMatches.length?searchMatches.map(item=><button key={item.id} className="kl-search-result" onMouseDown={e=>e.preventDefault()} onClick={()=>{setSearchFocused(false);open(item);}}><ProductIcon item={item}/><span><strong>{item.name}</strong><small>{item.category} · {item.kind}</small></span><b>↗</b></button>):<div className="kl-search-no-results">No matching apps found.</div>}<button className="kl-search-all" onMouseDown={e=>e.preventDefault()} onClick={()=>{setSearchFocused(false);scrollToCatalog();}}>Search for “{search}”</button></div>}</div>
+      <div className="kl-header-actions"><button className="kl-theme" aria-label="Toggle theme" onClick={()=>setDark(!dark)}>{dark?"☾":"☼"}</button><button className="kl-menu-toggle" onClick={()=>setMenu(!menu)} aria-label="Menu" aria-expanded={menu} aria-controls="khepilabs-navigation">{menu?"×":"☰"}</button><a className="kl-submit" href="#/admin">♙ Admin</a></div>
     </header>
     <main>
       <section className="kl-hero kl-reference-hero">
