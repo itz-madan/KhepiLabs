@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { fetchPublishedApps, subscribeToApps } from "../../lib/catalogue";
 type Entry = {
   id: string;
   name: string;
@@ -180,6 +181,23 @@ export function KhepiLabsHomePagePreview() {
     } catch { /* storage can be unavailable in private browsing */ }
     return true;
   });
+  useEffect(() => {
+    let alive = true;
+    const load = async () => {
+      try {
+        const rows = await fetchPublishedApps();
+        if (alive) setItems(rows as Entry[]);
+      } catch (error) {
+        console.error("KhepiLabs catalogue connection failed", error);
+      }
+    };
+    void load();
+    const channel = subscribeToApps(() => void load());
+    return () => {
+      alive = false;
+      void channel.unsubscribe();
+    };
+  }, []);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const detailCloseRef = useRef<HTMLButtonElement>(null);
   const detailOpenerRef = useRef<HTMLElement | null>(null);
