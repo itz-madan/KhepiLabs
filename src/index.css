@@ -312,3 +312,114 @@ main{max-width:1240px;margin:auto;padding:0 30px}.kl-hero{min-height:600px;paddi
   .kl-light .kl-nav{background:rgba(250,249,255,.98)}
 }
 @media(prefers-reduced-motion:reduce){.kl-card,.kl-primary,.kl-search-wrap{transition:none}}
+
+
+/* Public home refinement 02 — hierarchy, catalog cards and detail experience */
+.kl-header{max-width:1320px;height:86px;padding-inline:clamp(20px,4vw,56px)}
+main{max-width:1320px}
+.kl-hero{min-height:500px;padding:88px 5% 76px}
+.kl-hero-copy{max-width:780px}
+.kl-hero h1{font-size:clamp(58px,8vw,104px);line-height:.94;letter-spacing:-6.5px}
+.kl-hero-copy>p{max-width:570px;font-size:15px;line-height:1.85}
+.kl-search-wrap{width:min(100%,620px);height:66px;border-radius:16px}
+.kl-hero-meta{gap:17px;margin-top:25px}
+.kl-trending{padding:54px 5% 58px}
+.kl-trending-heading{margin-bottom:20px}
+.kl-trending-heading h2{font-size:clamp(27px,3vw,36px);letter-spacing:-1.5px}
+.kl-trending-row{min-height:104px;padding:19px 22px;border-radius:17px}
+.kl-trending-row>.kl-product-icon{width:64px;height:64px;border-radius:19px;font-size:27px}
+.kl-trending-copy strong{font-size:16px;letter-spacing:-.3px}
+.kl-trending-copy small{font-size:10px}
+.kl-trending-copy .kl-trending-description{font-size:11px}
+.kl-trending-open{font-size:11px}
+.kl-trending-dots{display:flex;justify-content:center;gap:7px;margin-top:14px}
+.kl-trending-dots button{width:6px;height:6px;border:0;border-radius:10px;padding:0;background:rgba(195,185,255,.35);transition:width .2s,background .2s}
+.kl-trending-dots button.active{width:23px;background:#b7a5ff}
+.kl-catalog{padding:76px 5% 92px}
+.kl-catalog-heading{align-items:flex-end}
+.kl-catalog-heading h2{font-size:clamp(31px,4vw,44px);letter-spacing:-2px}
+.kl-catalog-heading p{font-size:13px}
+.kl-catalog-count{min-width:90px;padding:10px 14px;border:1px solid var(--line);border-radius:13px;background:rgba(142,119,245,.06)}
+.kl-catalog-count b{font-size:30px}
+.kl-toolbar{margin:38px 0 24px;padding-bottom:15px}
+.kl-tabs{padding:4px;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.025)}
+.kl-tabs button{padding:10px 17px;border-radius:8px;font-size:11px}
+.kl-tabs button.active{background:rgba(142,119,245,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.kl-filter-trigger{min-height:39px;border-radius:9px}
+.kl-product-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.kl-card{min-height:244px;padding:22px;border-radius:17px;display:flex;flex-direction:column}
+.kl-card-top{align-items:flex-start}
+.kl-card-top .kl-product-icon{width:59px;height:59px;border-radius:18px;font-size:25px;transition:transform .25s}
+.kl-card:hover .kl-card-top .kl-product-icon{transform:translateY(-2px) rotate(-4deg) scale(1.04)}
+.kl-card-arrow{width:34px;height:34px;border-radius:11px;font-size:15px}
+.kl-card-body{display:flex;flex:1;flex-direction:column}
+.kl-card-kicker{margin-top:21px;font-size:8px;letter-spacing:1px}
+.kl-card-body h3{font-size:19px;letter-spacing:-.65px;margin:8px 0 7px}
+.kl-card-body p{font-size:11px;line-height:1.75;min-height:40px}
+.kl-card-foot{margin-top:auto;padding-top:15px;font-size:9px}
+.kl-bottom-cta{margin:0 5% 82px;padding:82px 24px;border-radius:22px}
+.kl-bottom-cta h2{font-size:clamp(38px,5vw,54px);letter-spacing:-2.5px}
+.kl-bottom-cta p{font-size:13px}
+.kl-primary,.kl-secondary{min-height:44px;border-radius:10px;padding:13px 19px}
+.kl-detail-overlay{background:rgba(4,4,16,.76)}
+.kl-detail{width:min(690px,100%);padding:34px 44px 60px;background:linear-gradient(160deg,#15142d,#101226 38%,#111c2b);border-left-color:rgba(183,165,255,.23)}
+.kl-detail-close{padding:8px 0}
+.kl-detail-head{gap:25px;margin:48px 0 38px}
+.kl-detail-head h2{font-size:clamp(30px,4vw,40px);letter-spacing:-1.5px}
+.kl-detail-section{padding:25px 0}
+.kl-detail-section h3{font-size:15px;letter-spacing:-.2px}
+.kl-detail-section p,.kl-detail-section li{font-size:12px;line-height:1.9}
+.kl-detail-meta{padding:20px 0}
+.kl-detail-meta small{letter-spacing:1.2px}
+.kl-detail-meta b{font-size:12px}
+.kl-light .kl-tabs{background:rgba(255,255,255,.75)}
+.kl-light .kl-tabs button.active{background:rgba(113,88,216,.11);box-shadow:none}
+.kl-light .kl-catalog-count{background:rgba(113,88,216,.045)}
+.kl-light .kl-detail{background:linear-gradient(160deg,#fff,#f6f4ff 55%,#f2f8fb)}
+@media(max-width:900px){
+  .kl-hero{padding-inline:3%}
+  .kl-catalog{padding-inline:3%}
+  .kl-trending{padding-inline:3%}
+  .kl-product-grid{gap:13px}
+}
+@media(max-width:650px){
+  .kl-header{height:72px;padding-inline:17px}
+  .kl-hero{min-height:455px;padding:63px 3% 52px}
+  .kl-hero h1{font-size:clamp(53px,13vw,68px);letter-spacing:-4.5px}
+  .kl-hero-copy>p{font-size:12px;line-height:1.8}
+  .kl-search-wrap{height:58px;border-radius:13px}
+  .kl-hero-meta{gap:9px;font-size:8px}
+  .kl-trending{padding:36px 3% 40px}
+  .kl-trending-heading h2{font-size:23px}
+  .kl-trending-row{min-height:82px;padding:12px;border-radius:13px;gap:11px}
+  .kl-trending-row>.kl-product-icon{width:48px;height:48px;border-radius:14px;font-size:21px}
+  .kl-trending-copy strong{font-size:13px}
+  .kl-trending-copy small{font-size:8px}
+  .kl-trending-copy .kl-trending-description{font-size:9px}
+  .kl-catalog{padding:49px 3% 60px}
+  .kl-catalog-heading h2{font-size:27px;letter-spacing:-1.2px}
+  .kl-catalog-heading p{font-size:10px}
+  .kl-catalog-count{min-width:65px;padding:7px 9px}
+  .kl-catalog-count b{font-size:23px}
+  .kl-catalog-count span{font-size:7px}
+  .kl-toolbar{margin:24px 0 17px}
+  .kl-tabs button{padding:8px 10px;font-size:9px}
+  .kl-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .kl-card{min-height:218px;padding:14px;border-radius:13px}
+  .kl-card-top .kl-product-icon{width:47px;height:47px;border-radius:14px;font-size:20px}
+  .kl-card-arrow{width:27px;height:27px;border-radius:9px}
+  .kl-card-kicker{margin-top:16px;font-size:7px;letter-spacing:.5px}
+  .kl-card-body h3{font-size:15px;margin:7px 0 5px}
+  .kl-card-body p{font-size:9px;line-height:1.6;min-height:43px}
+  .kl-card-foot{padding-top:11px;font-size:8px}
+  .kl-bottom-cta{margin:0 0 48px;padding:56px 16px;border-radius:16px}
+  .kl-bottom-cta h2{font-size:36px}
+  .kl-detail{padding:23px 21px 45px}
+  .kl-detail-head{margin:35px 0 28px}
+}
+@media(max-width:370px){
+  .kl-product-grid{grid-template-columns:1fr}
+  .kl-card{min-height:190px}
+  .kl-catalog-heading{gap:8px}
+  .kl-catalog-heading h2{font-size:24px}
+}
