@@ -19,7 +19,8 @@ export function ContentManager({section,notify}:{section:string;notify:(s:string
  const config=configs[section]||configs.Categories;
  const [rows,setRows]=useState<any[]>([]);
  const [loading,setLoading]=useState(true);
- const [editing,setEditing]=useState<any|null>(null);\n const [editorOpen,setEditorOpen]=useState(false);
+ const [editing,setEditing]=useState<any|null>(null);
+ const [editorOpen,setEditorOpen]=useState(false);
  const [id,setId]=useState("");
  const [json,setJson]=useState("{}");
  const [active,setActive]=useState(true);
