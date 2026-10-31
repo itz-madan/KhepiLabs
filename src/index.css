@@ -641,3 +641,9 @@ main{max-width:1320px}
 .kl-public-live-card small{display:inline-block;margin-top:10px;color:#a99cff}
 .kl-public-live-content>.kl-eyebrow{margin-bottom:16px}
 @media(max-width:640px){.ka-json-editor{margin:0 12px 14px;padding:14px}.ka-json-preview{max-width:180px}.ka-admin-add>.ka-primary{margin:0 14px}}
+
+.ka-backup-card{margin:18px 0;padding:26px}
+.ka-backup-card h3{font-size:17px;margin:14px 0 8px}
+.ka-backup-card p{max-width:720px;color:#9b9db0;font-size:12px;line-height:1.7;margin:0 0 18px}
+.ka-backup-card .ka-field{display:block;max-width:520px;margin:14px 0}
+.ka-backup-card .ka-primary{margin-top:8px}
