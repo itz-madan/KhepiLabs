@@ -1,10 +1,10 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, ReactNode, useEffect, useState } from "react";
 import { LockKeyhole, ShieldCheck, Eye, EyeOff } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { getAdminProfile } from "../lib/catalogue";
 import "../auth.css";
 
-export function AdminGate({ children }: { children: React.ReactNode | ((session:{role:string;userId:string})=>React.ReactNode) }) {
+export function AdminGate({ children }: { children: ReactNode | ((session:{role:string;userId:string})=>ReactNode) }) {
   const [checking,setChecking]=useState(true);
   const [sessionUser,setSessionUser]=useState<any>(null);
   const [email,setEmail]=useState("");
