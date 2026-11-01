@@ -79,9 +79,9 @@ export function AppDetailPage({ slug }: { slug: string }) {
       <nav aria-label="Breadcrumb" className="kl-public-breadcrumb"><a href="/">Home</a><span>/</span><a href={kind === 'Game' ? '/games' : '/apps'}>{kind}s</a><span>/</span><span>{name}</span></nav>
       <article className="kl-public-hero">
         <div className="kl-public-copy"><div className="kl-eyebrow">{kind.toUpperCase()} · KHEPILABS</div><h1>{name}</h1>
-          {d.category && <p>{text(d.category)}</p>}
+          {text(d.category) && <p>{text(d.category)}</p>}
           {description && <p>{description}</p>}
-          <dl>{d.version && <><dt>Version</dt><dd>{text(d.version)}</dd></>}{d.developer && <><dt>Developer</dt><dd>{text(d.developer)}</dd></>}{d.size && <><dt>Size</dt><dd>{text(d.size)}</dd></>}{d.updated && <><dt>Updated</dt><dd>{text(d.updated)}</dd></>}</dl>
+          <dl>{text(d.version) && <><dt>Version</dt><dd>{text(d.version)}</dd></>}{text(d.developer) && <><dt>Developer</dt><dd>{text(d.developer)}</dd></>}{text(d.size) && <><dt>Size</dt><dd>{text(d.size)}</dd></>}{text(d.updated) && <><dt>Updated</dt><dd>{text(d.updated)}</dd></>}</dl>
           {download.startsWith('https://') && <a className="kl-primary" href={download} target="_blank" rel="noopener noreferrer">Download / Get app ↗</a>}
         </div>
         {text(d.icon).startsWith('https://') && <img src={text(d.icon)} alt={`${name} app icon`} width="160" height="160" loading="eager"/>}
