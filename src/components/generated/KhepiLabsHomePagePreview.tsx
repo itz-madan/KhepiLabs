@@ -393,7 +393,7 @@ export function KhepiLabsHomePagePreview() {
   const scrollToCatalog = () => document.getElementById("catalog")?.scrollIntoView({
     behavior: "smooth"
   });
-  const current = trending.length ? trending[slide % trending.length] : null;
+  const current = trending.length ? trending[slide % trending.length] : (published[0] ?? null);
   return <div className="kl-app">
     <div className="kl-ambient kl-ambient-one" /><div className="kl-ambient kl-ambient-two" />
     <header className="kl-header">
