@@ -52,6 +52,6 @@ if (supabaseUrl && supabaseKey) {
     }
   } catch (error) { console.error('SEO prerender could not fetch public listings:', error); }
 }
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\\n${[...urls,...listingUrls].map(url=>`  <url><loc>${site}${url === '/' ? '/' : url}</loc></url>`).join('\\n')}\\n</urlset>\\n`;
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...urls,...listingUrls].map(url=>`  <url><loc>${site}${url === '/' ? '/' : url}</loc></url>`).join('\n')}\n</urlset>\n`;
 await writeFile(path.join(dist,'sitemap.xml'),sitemap);
 console.log(`SEO prerendered ${urls.length} static pages and ${listingUrls.length} published listings.`);
