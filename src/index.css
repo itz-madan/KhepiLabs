@@ -859,3 +859,49 @@ main{max-width:1320px}
 @media(max-width:1150px){.kl-reference-hero{grid-template-columns:minmax(340px,.9fr) minmax(410px,1.1fr);gap:26px}.kl-reference-hero h1{font-size:clamp(34px,3.8vw,46px)}}
 @media(max-width:850px){.kl-reference-hero{grid-template-columns:1fr;gap:24px}.kl-reference-hero .kl-hero-copy{padding:0}.kl-reference-hero h1{font-size:clamp(36px,7vw,48px);max-width:620px}.kl-reference-hero .kl-hero-copy>p{font-size:15px}.kl-hero-feature,.kl-hero-feature-inner{min-height:245px}}
 @media(max-width:560px){.kl-reference-hero h1{font-size:34px;line-height:1.15;letter-spacing:-1.3px}.kl-reference-hero .kl-hero-copy>p{font-size:13px;line-height:1.6}.kl-hero-ctas{gap:9px}.kl-hero-ctas .kl-primary,.kl-hero-ctas .kl-secondary{min-height:47px;padding:0 12px;font-size:11px}.kl-hero-feature,.kl-hero-feature-inner{min-height:200px}.kl-hero-feature-inner{padding:24px 42px;gap:14px}.kl-hero-feature .kl-product-icon.large{width:70px;height:70px;min-width:70px;border-radius:17px}.kl-hero-feature-copy h2{font-size:17px}}
+
+
+/* Mobile hero side-border/overflow correction */
+@media(max-width:850px){
+  .kl-reference-hero{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    width:auto;
+    max-width:none;
+    margin:0 18px;
+    padding:30px 0 22px;
+    min-height:0;
+    gap:0;
+    border:0!important;
+    border-radius:0!important;
+    overflow:visible;
+    background:transparent;
+  }
+  .kl-reference-hero .kl-hero-copy{
+    width:100%;
+    max-width:none;
+    min-width:0;
+    margin:0;
+    padding:0;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    overflow:visible;
+  }
+  .kl-reference-hero .kl-hero-copy:before,
+  .kl-reference-hero .kl-hero-copy:after{display:none!important;content:none!important}
+  .kl-reference-hero h1{max-width:100%;overflow-wrap:normal;word-break:normal}
+  .kl-reference-hero .kl-hero-copy>p{max-width:100%;overflow-wrap:break-word}
+  .kl-hero-ctas{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .kl-hero-ctas .kl-primary,.kl-hero-ctas .kl-secondary{min-width:0;width:100%;padding-left:8px;padding-right:8px}
+}
+@media(max-width:560px){
+  .kl-reference-hero{margin-left:18px;margin-right:18px;padding-top:26px;padding-bottom:18px}
+  .kl-reference-hero .kl-hero-copy{border:0!important;outline:0!important;box-shadow:none!important}
+  .kl-reference-hero .kl-hero-copy>.kl-eyebrow{margin-bottom:14px}
+  .kl-reference-hero h1{font-size:clamp(31px,8vw,36px);line-height:1.16;letter-spacing:-1.45px;margin-bottom:15px}
+  .kl-reference-hero .kl-hero-copy>p{font-size:13px;line-height:1.58;margin-bottom:22px}
+  .kl-hero-ctas .kl-primary,.kl-hero-ctas .kl-secondary{min-height:48px;font-size:11px;border-radius:13px}
+  .kl-hero-feature{margin-top:22px;min-width:0}
+}
