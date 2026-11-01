@@ -16,7 +16,7 @@ const escape = s => String(s ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;
 function htmlFor({url,title,description,h1,body,robots='index,follow,max-image-preview:large'}) {
   const canonical = site + url;
   const image = site + '/khepilabs.svg';
-  let html = baseHtml.replace('<div id="root"></div>', `<div id="root"><main><h1>${escape(h1)}</h1><p>${escape(body)}</p><p><a href="/">KhepiLabs Home</a></p></main></div>`);
+  let html = baseHtml; // Keep the React root empty: prerender metadata must not flash as plain page content before the app mounts.
   html = html.replace(/<title>.*?<\/title>/, `<title>${escape(title)}</title>`);
   html = html.replace('</head>', `<meta name="description" content="${escape(description)}"><meta name="robots" content="${robots}"><link rel="canonical" href="${canonical}"><meta property="og:type" content="website"><meta property="og:site_name" content="KhepiLabs"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${image}"><script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebPage',name:title,description,url:canonical,isPartOf:{'@type':'WebSite',name:'KhepiLabs',url:site+'/'}})}</script></head>`);
   return html;
