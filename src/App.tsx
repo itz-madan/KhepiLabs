@@ -21,6 +21,11 @@ function App() {
     return () => { window.removeEventListener('hashchange', sync); window.removeEventListener('popstate', sync); };
   }, []);
   useEffect(() => { if (!/^\/(apps|games)\/[^/]+$/.test(route)) applySeo(route); }, [route]);
+  useEffect(() => {
+    const isAdmin = route === '/admin';
+    document.documentElement.classList.toggle('kl-public-mode', !isAdmin);
+    document.documentElement.classList.toggle('kl-light', !isAdmin);
+  }, [route]);
   if (route === '/admin') return <AdminGate>{({role,userId})=><AdminPanel role={role} userId={userId}/>}</AdminGate>;
   const detail = route.match(/^\/(?:apps|games)\/([^/]+)$/);
   if (detail) return <AppDetailPage slug={decodeURIComponent(detail[1])}/>;
