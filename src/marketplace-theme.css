@@ -1,0 +1,145 @@
+/* KhepiLabs marketplace visual refresh — light, content-first UI */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap');
+
+:root{font-family:'Figtree',system-ui,sans-serif}
+html.kl-light{--bg:#f3f4f6;--panel:#fff;--panel2:#f9fafb;--text:#111827;--muted:#4b5563;--line:#e5e7eb;--mint:#22c55e;--mint2:#16a34a;--mono:'Figtree',sans-serif;background:#f3f4f6;color:#111827}
+html.kl-light body{background:#f3f4f6;color:#111827}
+html.kl-light .kl-app{background:#f3f4f6;color:#111827}
+html.kl-light .kl-ambient{display:none}
+html.kl-light .kl-header{height:64px;border-bottom:1px solid #e5e7eb;background:#fff;box-shadow:0 1px 2px rgba(17,24,39,.025)}
+html.kl-light .kl-brand{color:#111827;font-weight:800;letter-spacing:-.4px}
+html.kl-light .kl-brand-accent{color:#22c55e}
+html.kl-light .kl-brand small{font:10px 'Figtree',sans-serif;letter-spacing:.2px;color:#6b7280}
+html.kl-light .kl-brand-mark{border:0;border-radius:11px;background:#22c55e;box-shadow:none}
+html.kl-light .kl-brand-mark span{background:#fff;box-shadow:none}
+html.kl-light .kl-nav{gap:24px}
+html.kl-light .kl-nav button,html.kl-light .kl-theme,html.kl-light .kl-menu-toggle{color:#374151;font:500 14px 'Figtree',sans-serif}
+html.kl-light .kl-nav button:hover,html.kl-light .kl-nav button.selected{color:#16a34a}
+html.kl-light .kl-theme{border:1px solid #e5e7eb;background:#f9fafb}
+html.kl-light .kl-submit{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:10px 18px;background:#22c55e;color:#fff;font:600 14px 'Figtree',sans-serif;box-shadow:none}
+html.kl-light .kl-submit:hover{background:#16a34a;box-shadow:0 5px 14px rgba(34,197,94,.18)}
+html.kl-light .kl-hero{min-height:390px;padding-top:58px;padding-bottom:54px;border-bottom:1px solid #e5e7eb}
+html.kl-light .kl-hero:before{display:none}
+html.kl-light .kl-eyebrow{font:600 12px 'Figtree',sans-serif;letter-spacing:.5px;color:#16a34a}
+html.kl-light .kl-live-dot,html.kl-light .kl-chip-dot{background:#22c55e;box-shadow:none}
+html.kl-light .kl-hero h1{color:#111827;font-size:clamp(38px,5vw,58px);line-height:1.08;letter-spacing:-1.8px;font-weight:800}
+html.kl-light .kl-hero h1 em,html.kl-light .kl-bottom-cta h2 em{font-family:'Figtree',sans-serif;font-style:normal;color:#22c55e;letter-spacing:inherit;font-weight:700}
+html.kl-light .kl-hero-copy>p{color:#4b5563;font-size:16px;line-height:1.7}
+html.kl-light .kl-search-wrap{height:54px;border:1px solid #e5e7eb;border-radius:999px;background:#fff;box-shadow:0 3px 12px rgba(17,24,39,.055);backdrop-filter:none}
+html.kl-light .kl-search-wrap:focus-within{border-color:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.12)}
+html.kl-light .kl-search-wrap .kl-icon{color:#22c55e}
+html.kl-light .kl-search-wrap input{color:#111827;font-size:14px}
+html.kl-light .kl-search-wrap input::placeholder{color:#9ca3af}
+html.kl-light .kl-search-wrap kbd{color:#6b7280;border-color:#e5e7eb}
+html.kl-light .kl-search-wrap>button,html.kl-light .kl-empty button{border:0;border-radius:999px;background:#22c55e;color:#fff;font:600 14px 'Figtree',sans-serif}
+html.kl-light .kl-hero-meta{color:#6b7280;font:12px 'Figtree',sans-serif}
+html.kl-light .kl-hero-meta b{color:#374151}
+html.kl-light .kl-featured,html.kl-light .kl-catalog{border-color:#e5e7eb}
+html.kl-light .kl-featured-head h2,html.kl-light .kl-catalog-heading h2{color:#111827;font-family:'Figtree',sans-serif;font-size:27px;letter-spacing:-.6px}
+html.kl-light .kl-catalog-heading h2 span{color:#22c55e}
+html.kl-light .kl-catalog-heading p{color:#6b7280;font-size:14px}
+html.kl-light .kl-slider-controls>span,html.kl-light .kl-catalog-count b{color:#16a34a}
+html.kl-light .kl-slider-controls button{border:1px solid #e5e7eb;background:#fff;color:#374151}
+html.kl-light .kl-slider-controls button:hover{background:#22c55e;border-color:#22c55e;color:#fff}
+html.kl-light .kl-feature-card{border:1px solid #e5e7eb;border-radius:16px;background:#fff;box-shadow:0 5px 18px rgba(17,24,39,.055)}
+html.kl-light .kl-feature-card:after{display:none}
+html.kl-light .kl-feature-copy h3{color:#111827;font-family:'Figtree',sans-serif;font-size:30px;letter-spacing:-.7px}
+html.kl-light .kl-feature-copy p,html.kl-light .kl-feature-details{color:#4b5563;font:14px/1.6 'Figtree',sans-serif}
+html.kl-light .kl-feature-tag,html.kl-light .kl-feature-tag b{color:#16a34a}
+html.kl-light .kl-feature-tag b{background:#22c55e;box-shadow:none}
+html.kl-light .kl-feature-halo{background:radial-gradient(circle,rgba(34,197,94,.16),transparent 70%);filter:none}
+html.kl-light .kl-feature-orbit{color:#9ca3af}
+html.kl-light .kl-primary{border:0;border-radius:999px;background:#22c55e;color:#fff;font:600 14px 'Figtree',sans-serif;padding:11px 19px}
+html.kl-light .kl-primary:hover{background:#16a34a;box-shadow:0 5px 14px rgba(34,197,94,.18)}
+html.kl-light .kl-secondary{border:1px solid #d1d5db;border-radius:999px;background:#fff;color:#374151;font:600 14px 'Figtree',sans-serif}
+html.kl-light .kl-toolbar{border-color:#e5e7eb}
+html.kl-light .kl-tabs button{border-radius:999px;color:#4b5563;font:500 13px 'Figtree',sans-serif}
+html.kl-light .kl-tabs button.active{border-color:#bbf7d0;background:#dcfce7;color:#15803d}
+html.kl-light .kl-category-select>span{color:#6b7280}
+html.kl-light .kl-category-select select,html.kl-light .kl-filter-trigger{border:1px solid #e5e7eb;border-radius:999px;background:#fff;color:#374151;font:500 13px 'Figtree',sans-serif}
+html.kl-light .kl-filter-trigger b{color:#16a34a}
+html.kl-light .kl-filter-menu{border:1px solid #e5e7eb;border-radius:14px;background:#fff;box-shadow:0 12px 35px rgba(17,24,39,.12);backdrop-filter:none}
+html.kl-light .kl-filter-menu button{color:#374151;font:500 13px 'Figtree',sans-serif}
+html.kl-light .kl-filter-menu button:hover,html.kl-light .kl-filter-menu button.chosen{background:#dcfce7;color:#15803d}
+html.kl-light .kl-product-grid{gap:16px}
+html.kl-light .kl-card,html.kl-light .kl-reference-app-card,html.kl-light .kl-trending-row{border:1px solid #e5e7eb;border-radius:16px;background:#fff;color:#111827;box-shadow:0 3px 12px rgba(17,24,39,.045);backdrop-filter:none}
+html.kl-light .kl-card{padding:20px}
+html.kl-light .kl-card:before,html.kl-light .kl-card:after,html.kl-light .kl-trending-row:after{display:none}
+html.kl-light .kl-card:hover,html.kl-light .kl-reference-app-card:hover{transform:translateY(-3px);border-color:#86efac;background:#fff;box-shadow:0 9px 24px rgba(17,24,39,.08)}
+html.kl-light .kl-card-kicker,html.kl-light .kl-card-body p,html.kl-light .kl-card-foot{color:#6b7280}
+html.kl-light .kl-card-body h3,html.kl-light .kl-trending-copy strong{color:#111827}
+html.kl-light .kl-card-foot{border-color:#f3f4f6}
+html.kl-light .kl-card-foot span:last-child{color:#16a34a}
+html.kl-light .kl-card-arrow{border-color:#e5e7eb;color:#6b7280}
+html.kl-light .kl-card:hover .kl-card-arrow{background:#22c55e;border-color:#22c55e;color:#fff}
+html.kl-light .kl-card-featured .kl-card-top{background:#f9fafb;border-color:#e5e7eb}
+html.kl-light .kl-card-featured:after{background:#dcfce7;border:0;color:#15803d}
+html.kl-light .kl-card-compact .kl-card-top{border-color:#e5e7eb}
+html.kl-light .kl-reference-app-card{padding:15px;display:flex;align-items:center;gap:13px}
+html.kl-light .kl-reference-app-info h3{color:#111827;font:600 16px 'Figtree',sans-serif}
+html.kl-light .kl-reference-app-info p{color:#6b7280;font:13px 'Figtree',sans-serif}
+html.kl-light .kl-reference-app-info>div{color:#6b7280;font:12px 'Figtree',sans-serif}
+html.kl-light .kl-reference-download{border-radius:999px;background:#dcfce7;color:#15803d}
+html.kl-light .kl-empty{border-color:#d1d5db;background:#fff}
+html.kl-light .kl-empty h3{color:#111827}
+html.kl-light .kl-empty p{color:#6b7280}
+html.kl-light .kl-bottom-cta{margin-top:30px;border:1px solid #e5e7eb;border-radius:16px;background:#fff;box-shadow:0 4px 16px rgba(17,24,39,.045);backdrop-filter:none}
+html.kl-light .kl-cta-glow{display:none}
+html.kl-light .kl-bottom-cta h2{color:#111827;font:700 32px/1.15 'Figtree',sans-serif;letter-spacing:-.8px}
+html.kl-light .kl-bottom-cta p{color:#4b5563;font:14px 'Figtree',sans-serif}
+html.kl-light .kl-footer,html.kl-light .kl-site-footer{border-color:#e5e7eb;background:#fff;color:#111827}
+html.kl-light .kl-footer>span,html.kl-light .kl-footer-brand p,html.kl-light .kl-footer-main>div>a:not(.kl-brand),html.kl-light .kl-footer-main>div>span{color:#6b7280}
+html.kl-light .kl-footer-main h3{color:#111827;font:700 14px 'Figtree',sans-serif;letter-spacing:0;text-transform:none}
+html.kl-light .kl-footer-main a:hover,html.kl-light .kl-footer-bottom svg{color:#16a34a}
+html.kl-light .kl-socials a{border-color:#e5e7eb;color:#16a34a}
+html.kl-light .kl-footer-bottom{border-color:#e5e7eb;color:#6b7280;font:12px 'Figtree',sans-serif}
+html.kl-light .kl-detail-overlay{background:rgba(17,24,39,.35);backdrop-filter:blur(5px)}
+html.kl-light .kl-detail{border-color:#e5e7eb;border-radius:18px 0 0 18px;background:#fff;color:#111827;box-shadow:-12px 0 40px rgba(17,24,39,.12)}
+html.kl-light .kl-detail-close{color:#16a34a}
+html.kl-light .kl-detail-close span,html.kl-light .kl-detail-head p,html.kl-light .kl-detail-section p,html.kl-light .kl-detail-section li,html.kl-light .kl-detail-note{color:#6b7280}
+html.kl-light .kl-detail-head h2,html.kl-light .kl-detail-section h3,html.kl-light .kl-detail-meta b{color:#111827}
+html.kl-light .kl-detail-section,html.kl-light .kl-detail-meta,html.kl-light .kl-detail-note{border-color:#e5e7eb}
+html.kl-light .kl-detail-meta small{color:#6b7280}
+html.kl-light .kl-screens img{border-color:#e5e7eb}
+html.kl-light .kl-toast{background:#dcfce7;color:#166534;box-shadow:0 8px 24px rgba(17,24,39,.12)}
+html.kl-light .kl-public-main{color:#111827}
+html.kl-light .kl-public-breadcrumb{color:#6b7280;font:500 12px 'Figtree',sans-serif;letter-spacing:0}
+html.kl-light .kl-public-breadcrumb a,html.kl-light .kl-back-home{color:#16a34a}
+html.kl-light .kl-public-hero{border:1px solid #e5e7eb;border-radius:16px;background:#fff;box-shadow:0 4px 16px rgba(17,24,39,.045)}
+html.kl-light .kl-public-copy h1{color:#111827;font:800 clamp(36px,5vw,54px)/1.08 'Figtree',sans-serif;letter-spacing:-1.5px}
+html.kl-light .kl-public-copy h1 em{font:700 inherit 'Figtree',sans-serif;color:#22c55e}
+html.kl-light .kl-public-copy>p{color:#4b5563;font:16px/1.7 'Figtree',sans-serif}
+html.kl-light .kl-public-art{opacity:.9}
+html.kl-light .kl-public-orbit{border-color:#dcfce7;box-shadow:0 0 0 24px rgba(34,197,94,.035),0 0 0 54px rgba(59,130,246,.025)}
+html.kl-light .kl-public-shield{border:1px solid #bbf7d0;border-radius:28px;background:#f0fdf4;color:#16a34a;box-shadow:0 12px 30px rgba(17,24,39,.07);backdrop-filter:none}
+html.kl-light .kl-public-float{background:#fff;border:1px solid #e5e7eb;color:#374151;box-shadow:0 4px 12px rgba(17,24,39,.06);font:600 11px 'Figtree',sans-serif}
+html.kl-light .kl-public-float svg{color:#16a34a}
+html.kl-light .kl-public-badges span,html.kl-light .kl-why-grid article{border:1px solid #e5e7eb;border-radius:14px;background:#fff}
+html.kl-light .kl-public-badges svg,html.kl-light .kl-why-grid svg{color:#16a34a}
+html.kl-light .kl-public-badges b,html.kl-light .kl-why h2,html.kl-light .kl-why-grid h3,html.kl-light .kl-public-sections h2{color:#111827}
+html.kl-light .kl-public-badges small,html.kl-light .kl-why-grid p,html.kl-light .kl-public-sections p{color:#4b5563}
+html.kl-light .kl-public-sections article{border-color:#e5e7eb}
+html.kl-light .kl-public-section-no{color:#16a34a}
+html.kl-light .kl-policy-note{color:#6b7280}
+html.kl-light .kl-policy-note svg{color:#16a34a}
+html.kl-light .kl-public-contact{border:1px solid #e5e7eb;border-radius:16px;background:#fff}
+html.kl-light .kl-public-contact h2{color:#111827}
+html.kl-light .kl-public-contact p{color:#6b7280}
+html.kl-light .kl-menu-toggle{color:#111827}
+@media(max-width:650px){
+ html.kl-light .kl-header{height:64px;padding:0 17px}
+ html.kl-light .kl-nav{top:63px;background:#fff;border:1px solid #e5e7eb;box-shadow:0 12px 28px rgba(17,24,39,.1)}
+ html.kl-light .kl-nav button{color:#374151}
+ html.kl-light .kl-hero{min-height:440px;padding-top:48px;padding-bottom:48px}
+ html.kl-light .kl-hero h1{font-size:clamp(38px,10vw,50px);letter-spacing:-1.5px}
+ html.kl-light .kl-hero-copy>p{font-size:14px}
+ html.kl-light .kl-featured,html.kl-light .kl-catalog{padding-top:40px;padding-bottom:45px}
+ html.kl-light .kl-featured-head h2,html.kl-light .kl-catalog-heading h2{font-size:23px}
+ html.kl-light .kl-card{padding:14px;border-radius:14px}
+ html.kl-light .kl-card-featured .kl-card-body{padding:16px}
+ html.kl-light .kl-card-compact .kl-card-body{padding:12px}
+ html.kl-light .kl-public-hero{padding:25px 20px 8px}
+ html.kl-light .kl-public-copy h1{font-size:42px}
+ html.kl-light .kl-public-copy>p{font-size:14px}
+ html.kl-light .kl-footer-main{gap:24px 16px}
+}
