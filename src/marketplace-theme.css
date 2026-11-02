@@ -107,7 +107,7 @@ html.kl-light.kl-public-mode .kl-public-breadcrumb{color:#6b7280;font:500 12px '
 html.kl-light.kl-public-mode .kl-public-breadcrumb a,html.kl-light.kl-public-mode .kl-back-home{color:#16a34a}
 html.kl-light.kl-public-mode .kl-public-hero{border:1px solid #e5e7eb;border-radius:16px;background:#fff;box-shadow:0 4px 16px rgba(17,24,39,.045)}
 html.kl-light.kl-public-mode .kl-public-copy h1{color:#111827;font:800 clamp(36px,5vw,54px)/1.08 'Figtree',sans-serif;letter-spacing:-1.5px}
-html.kl-light.kl-public-mode .kl-public-copy h1 em{font:700 inherit 'Figtree',sans-serif;color:#22c55e}
+html.kl-light.kl-public-mode .kl-public-copy h1 em{font-family:'Figtree',sans-serif;font-weight:700;font-style:normal;color:#22c55e}
 html.kl-light.kl-public-mode .kl-public-copy>p{color:#4b5563;font:16px/1.7 'Figtree',sans-serif}
 html.kl-light.kl-public-mode .kl-public-art{opacity:.9}
 html.kl-light.kl-public-mode .kl-public-orbit{border-color:#dcfce7;box-shadow:0 0 0 24px rgba(34,197,94,.035),0 0 0 54px rgba(59,130,246,.025)}
@@ -142,4 +142,61 @@ html.kl-light.kl-public-mode .kl-menu-toggle{color:#111827}
  html.kl-light.kl-public-mode .kl-public-copy h1{font-size:42px}
  html.kl-light.kl-public-mode .kl-public-copy>p{font-size:14px}
  html.kl-light.kl-public-mode .kl-footer-main{gap:24px 16px}
+}
+
+
+/* Mobile header: prevent controls from overflowing or stretching. */
+@media(max-width:650px){
+ html.kl-public-mode .kl-header{height:72px;min-height:72px;padding:0 14px;gap:10px;display:flex;justify-content:space-between;align-items:center}
+ html.kl-public-mode .kl-brand{gap:8px;flex:0 1 auto;min-width:0;font-size:16px;letter-spacing:-.6px}
+ html.kl-public-mode .kl-brand-mark{width:34px;height:34px;flex:0 0 34px}
+ html.kl-public-mode .kl-brand small{display:none}
+ html.kl-public-mode .kl-header-search{display:none!important}
+ html.kl-public-mode .kl-header-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto;margin-left:auto}
+ html.kl-public-mode .kl-theme{width:36px;height:36px;flex:0 0 36px;font-size:17px}
+ html.kl-public-mode .kl-menu-toggle{display:grid;place-items:center;width:34px;height:36px;flex:0 0 34px;font-size:22px}
+ html.kl-public-mode .kl-submit{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-width:0;padding:9px 13px;border-radius:999px;font:600 13px 'Figtree',sans-serif;line-height:1.1}
+ html.kl-public-mode .kl-nav{position:absolute;top:71px;left:12px;right:12px;z-index:20;display:none;flex-direction:column;align-items:stretch;gap:0;padding:8px;border-radius:14px}
+ html.kl-public-mode .kl-nav.open{display:flex}
+ html.kl-public-mode .kl-nav button{display:flex;align-items:center;gap:12px;text-align:left;padding:12px 14px;border-radius:9px}
+ html.kl-public-mode .kl-nav-icon{width:20px;text-align:center}
+}
+/* Dark marketplace theme — retain the refreshed layout, not the legacy neon skin. */
+html:not(.kl-light).kl-public-mode{--bg:#10141b;--panel:#191f29;--panel2:#202733;--text:#f3f4f6;--muted:#a1aab7;--line:#303846;--mint:#22c55e;--mint2:#16a34a;background:#10141b;color:#f3f4f6;color-scheme:dark}
+html:not(.kl-light).kl-public-mode body,html:not(.kl-light).kl-public-mode .kl-app{background:#10141b;color:#f3f4f6}
+html:not(.kl-light).kl-public-mode .kl-header{background:#151a23;border-color:#303846;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+html:not(.kl-light).kl-public-mode .kl-brand{color:#f9fafb}
+html:not(.kl-light).kl-public-mode .kl-brand-accent{color:#22c55e}
+html:not(.kl-light).kl-public-mode .kl-brand-mark{background:#22c55e}
+html:not(.kl-light).kl-public-mode .kl-brand-mark span{background:#fff}
+html:not(.kl-light).kl-public-mode .kl-nav button,html:not(.kl-light).kl-public-mode .kl-theme,html:not(.kl-light).kl-public-mode .kl-menu-toggle{color:#d1d5db}
+html:not(.kl-light).kl-public-mode .kl-theme{background:#202733;border-color:#374151}
+html:not(.kl-light).kl-public-mode .kl-submit,html:not(.kl-light).kl-public-mode .kl-primary,html:not(.kl-light).kl-public-mode .kl-search-wrap>button{background:#22c55e;color:#fff;border:0}
+html:not(.kl-light).kl-public-mode .kl-hero{border-color:#303846}
+html:not(.kl-light).kl-public-mode .kl-hero h1,html:not(.kl-light).kl-public-mode .kl-featured-head h2,html:not(.kl-light).kl-public-mode .kl-catalog-heading h2,html:not(.kl-light).kl-public-mode .kl-feature-copy h3,html:not(.kl-light).kl-public-mode .kl-card-body h3,html:not(.kl-light).kl-public-mode .kl-bottom-cta h2{color:#f9fafb}
+html:not(.kl-light).kl-public-mode .kl-hero-copy>p,html:not(.kl-light).kl-public-mode .kl-feature-copy p,html:not(.kl-light).kl-public-mode .kl-catalog-heading p,html:not(.kl-light).kl-public-mode .kl-card-body p,html:not(.kl-light).kl-public-mode .kl-bottom-cta p{color:#a1aab7}
+html:not(.kl-light).kl-public-mode .kl-search-wrap,html:not(.kl-light).kl-public-mode .kl-secondary,html:not(.kl-light).kl-public-mode .kl-category-select select,html:not(.kl-light).kl-public-mode .kl-filter-trigger{background:#191f29;border-color:#374151;color:#e5e7eb}
+html:not(.kl-light).kl-public-mode .kl-search-wrap input{color:#f9fafb}
+html:not(.kl-light).kl-public-mode .kl-feature-card{background:#1b222d;border-color:#303846;box-shadow:0 5px 18px rgba(0,0,0,.18)}
+html:not(.kl-light).kl-public-mode .kl-feature-tag,html:not(.kl-light).kl-public-mode .kl-feature-tag b,html:not(.kl-light).kl-public-mode .kl-catalog-heading h2 span,html:not(.kl-light).kl-public-mode .kl-slider-controls>span,html:not(.kl-light).kl-public-mode .kl-card-foot span:last-child{color:#4ade80}
+html:not(.kl-light).kl-public-mode .kl-feature-tag b,html:not(.kl-light).kl-public-mode .kl-live-dot,html:not(.kl-light).kl-public-mode .kl-chip-dot{background:#22c55e}
+html:not(.kl-light).kl-public-mode .kl-feature-details,html:not(.kl-light).kl-public-mode .kl-card-kicker,html:not(.kl-light).kl-public-mode .kl-card-foot{color:#a1aab7}
+html:not(.kl-light).kl-public-mode .kl-slider-controls button,html:not(.kl-light).kl-public-mode .kl-card,html:not(.kl-light).kl-public-mode .kl-reference-app-card,html:not(.kl-light).kl-public-mode .kl-trending-row,html:not(.kl-light).kl-public-mode .kl-bottom-cta{background:#191f29;border-color:#303846;color:#f3f4f6;box-shadow:0 4px 16px rgba(0,0,0,.14)}
+html:not(.kl-light).kl-public-mode .kl-card:hover,html:not(.kl-light).kl-public-mode .kl-reference-app-card:hover{background:#202a35;border-color:#3b8b5b}
+html:not(.kl-light).kl-public-mode .kl-card-foot,html:not(.kl-light).kl-public-mode .kl-toolbar,html:not(.kl-light).kl-public-mode .kl-catalog,html:not(.kl-light).kl-public-mode .kl-featured{border-color:#303846}
+html:not(.kl-light).kl-public-mode .kl-tabs button{color:#cbd5e1}
+html:not(.kl-light).kl-public-mode .kl-tabs button.active{background:#163522;border-color:#245b37;color:#86efac}
+html:not(.kl-light).kl-public-mode .kl-footer,html:not(.kl-light).kl-public-mode .kl-site-footer{background:#151a23;border-color:#303846;color:#f3f4f6}
+html:not(.kl-light).kl-public-mode .kl-footer-main h3,html:not(.kl-light).kl-public-mode .kl-footer-main a,html:not(.kl-light).kl-public-mode .kl-footer-bottom{color:#cbd5e1}
+html:not(.kl-light).kl-public-mode .kl-public-hero,html:not(.kl-light).kl-public-mode .kl-public-contact,html:not(.kl-light).kl-public-mode .kl-why-grid article,html:not(.kl-light).kl-public-mode .kl-public-badges span{background:#191f29;border-color:#303846}
+html:not(.kl-light).kl-public-mode .kl-public-copy h1,html:not(.kl-light).kl-public-mode .kl-why h2,html:not(.kl-light).kl-public-mode .kl-why-grid h3,html:not(.kl-light).kl-public-mode .kl-public-sections h2,html:not(.kl-light).kl-public-mode .kl-public-contact h2{color:#f9fafb}
+html:not(.kl-light).kl-public-mode .kl-public-copy>p,html:not(.kl-light).kl-public-mode .kl-why-grid p,html:not(.kl-light).kl-public-mode .kl-public-sections p,html:not(.kl-light).kl-public-mode .kl-public-contact p{color:#a1aab7}
+html:not(.kl-light).kl-public-mode .kl-detail{background:#191f29;color:#f3f4f6;border-color:#303846}
+html:not(.kl-light).kl-public-mode .kl-detail-head h2,html:not(.kl-light).kl-public-mode .kl-detail-section h3,html:not(.kl-light).kl-public-mode .kl-detail-meta b{color:#f9fafb}
+html:not(.kl-light).kl-public-mode .kl-detail-head p,html:not(.kl-light).kl-public-mode .kl-detail-section p,html:not(.kl-light).kl-public-mode .kl-detail-section li{color:#a1aab7}
+@media(max-width:650px){
+ html:not(.kl-light).kl-public-mode .kl-header{background:#151a23}
+ html:not(.kl-light).kl-public-mode .kl-nav{background:#191f29;border-color:#303846}
+ html:not(.kl-light).kl-public-mode .kl-nav button{color:#e5e7eb}
+ html:not(.kl-light).kl-public-mode .kl-submit{background:#22c55e;color:#fff}
 }
