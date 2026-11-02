@@ -173,7 +173,7 @@ export function KhepiLabsHomePagePreview() {
       return demo;
     }
   });
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(() => { try { return localStorage.getItem("khl-theme") === "dark"; } catch { return false; } });
   useEffect(() => {
     let alive = true;
     const load = async () => {
