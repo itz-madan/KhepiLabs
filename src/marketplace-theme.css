@@ -313,3 +313,69 @@ html.kl-public-mode .kl-card{min-height:220px}
 @media(prefers-reduced-motion:reduce){
  html.kl-public-mode *,html.kl-public-mode *::before,html.kl-public-mode *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
 }
+
+
+/* Final parity pass: no motion; identical physical layout in both themes. */
+html.kl-public-mode *,html.kl-public-mode *::before,html.kl-public-mode *::after{
+ transition:none!important;animation:none!important;scroll-behavior:auto!important;
+}
+html.kl-public-mode .kl-header{
+ height:76px!important;min-height:76px!important;padding:0 24px!important;
+ display:flex!important;align-items:center!important;gap:18px!important;
+}
+html.kl-public-mode .kl-brand{font-size:18px!important;gap:9px!important;flex:0 0 auto!important}
+html.kl-public-mode .kl-header-search{height:42px!important;min-height:42px!important;max-width:360px!important;min-width:180px!important;flex:1 1 320px!important;margin:0 auto!important}
+html.kl-public-mode .kl-header-actions{display:flex!important;align-items:center!important;gap:10px!important;flex:0 0 auto!important}
+html.kl-public-mode .kl-theme{width:40px!important;height:40px!important;flex:0 0 40px!important}
+html.kl-public-mode .kl-menu-toggle{width:38px!important;height:40px!important;flex:0 0 38px!important}
+html.kl-public-mode .kl-reference-hero{
+ min-height:360px!important;padding:42px 0 30px!important;
+ grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr)!important;
+ gap:34px!important;align-items:center!important;
+}
+html.kl-public-mode .kl-reference-hero h1{font-size:clamp(36px,3.1vw,49px)!important;line-height:1.13!important}
+html.kl-public-mode .kl-reference-hero .kl-hero-copy>p{font-size:16px!important;line-height:1.6!important}
+html.kl-public-mode .kl-hero-feature{min-height:282px!important}
+html.kl-public-mode .kl-hero-feature-inner{min-height:282px!important;padding:34px 58px!important;gap:22px!important}
+html.kl-public-mode .kl-hero-feature .kl-product-icon.large{width:92px!important;height:92px!important;min-width:92px!important}
+html.kl-public-mode .kl-product-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important}
+html.kl-public-mode .kl-card{padding:18px!important;min-height:215px!important}
+html.kl-public-mode .kl-featured,html.kl-public-mode .kl-catalog{padding-top:58px!important;padding-bottom:62px!important}
+@media(max-width:850px){
+ html.kl-public-mode .kl-header{height:72px!important;min-height:72px!important;padding:0 14px!important;gap:9px!important}
+ html.kl-public-mode .kl-header-search{min-width:0!important;max-width:none!important;flex:1 1 auto!important;height:38px!important;min-height:38px!important}
+ html.kl-public-mode .kl-reference-hero{grid-template-columns:minmax(0,1fr)!important;min-height:0!important;padding:32px 0 25px!important;gap:20px!important}
+ html.kl-public-mode .kl-reference-hero h1{font-size:clamp(34px,6vw,45px)!important}
+ html.kl-public-mode .kl-hero-feature,html.kl-public-mode .kl-hero-feature-inner{min-height:230px!important}
+ html.kl-public-mode .kl-hero-feature-inner{padding:28px 50px!important}
+ html.kl-public-mode .kl-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:650px){
+ html.kl-public-mode .kl-header{height:68px!important;min-height:68px!important;padding:0 10px!important;gap:7px!important}
+ html.kl-public-mode .kl-brand{font-size:14px!important;gap:6px!important}
+ html.kl-public-mode .kl-brand-mark{width:30px!important;height:30px!important;flex-basis:30px!important}
+ html.kl-public-mode .kl-brand small{display:none!important}
+ html.kl-public-mode .kl-header-search{display:flex!important;min-width:0!important;max-width:none!important;flex:1 1 auto!important;height:36px!important;min-height:36px!important;padding:0 8px!important;margin:0!important}
+ html.kl-public-mode .kl-header-search input{font-size:12px!important}
+ html.kl-public-mode .kl-header-actions{gap:4px!important}
+ html.kl-public-mode .kl-theme{width:31px!important;height:31px!important;flex-basis:31px!important}
+ html.kl-public-mode .kl-menu-toggle{width:28px!important;height:32px!important;flex-basis:28px!important}
+ html.kl-public-mode .kl-nav{top:67px!important;right:8px!important;left:auto!important;width:min(245px,calc(100vw - 16px))!important}
+ html.kl-public-mode .kl-reference-hero{padding:26px 0 20px!important;gap:16px!important}
+ html.kl-public-mode .kl-reference-hero h1{font-size:clamp(32px,8.5vw,41px)!important;line-height:1.12!important}
+ html.kl-public-mode .kl-reference-hero .kl-hero-copy>p{font-size:14px!important;line-height:1.6!important}
+ html.kl-public-mode .kl-hero-ctas .kl-primary,html.kl-public-mode .kl-hero-ctas .kl-secondary{min-width:0!important;min-height:44px!important;padding:10px 13px!important;font-size:12px!important}
+ html.kl-public-mode .kl-hero-feature,html.kl-public-mode .kl-hero-feature-inner{min-height:190px!important}
+ html.kl-public-mode .kl-hero-feature-inner{padding:22px 32px!important;gap:12px!important}
+ html.kl-public-mode .kl-hero-feature .kl-product-icon.large{width:66px!important;height:66px!important;min-width:66px!important}
+ html.kl-public-mode .kl-hero-feature-copy h2{font-size:18px!important}
+ html.kl-public-mode .kl-featured,html.kl-public-mode .kl-catalog{padding-top:36px!important;padding-bottom:40px!important}
+ html.kl-public-mode .kl-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ html.kl-public-mode .kl-card{min-height:185px!important;padding:12px!important}
+}
+@media(max-width:370px){
+ html.kl-public-mode .kl-brand{font-size:13px!important}
+ html.kl-public-mode .kl-header{gap:5px!important;padding:0 8px!important}
+ html.kl-public-mode .kl-theme{width:29px!important;height:29px!important;flex-basis:29px!important}
+ html.kl-public-mode .kl-menu-toggle{width:26px!important;flex-basis:26px!important}
+}
