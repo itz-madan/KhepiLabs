@@ -15,6 +15,7 @@ const list = (value: unknown) => Array.isArray(value) ? value.filter((x): x is s
 export function AppDetailPage({ slug }: { slug: string }) {
   const [item, setItem] = useState<Listing | null>(null);
   const [loading, setLoading] = useState(true);
+  const [activeScreenshot, setActiveScreenshot] = useState<number | null>(null);
   useEffect(() => {
     let active = true;
     const load = async () => {
@@ -35,6 +36,18 @@ export function AppDetailPage({ slug }: { slug: string }) {
     return () => { active = false; };
   }, [slug]);
 
+  useEffect(() => {
+    if (activeScreenshot === null) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActiveScreenshot(null);
+      if (event.key === 'ArrowRight') setActiveScreenshot(index => index === null ? null : (index + 1) % screenshots.length);
+      if (event.key === 'ArrowLeft') setActiveScreenshot(index => index === null ? null : (index - 1 + screenshots.length) % screenshots.length);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKeyDown); document.body.style.overflow = previousOverflow; };
+  }, [activeScreenshot]);
   useEffect(() => {
     if (!item) return;
     const d = item.data || {};
@@ -86,7 +99,8 @@ export function AppDetailPage({ slug }: { slug: string }) {
         </div>
         {text(d.icon).startsWith('https://') && <img src={text(d.icon)} alt={`${name} app icon`} width="160" height="160" loading="eager"/>}
       </article>
-      {screenshots.length > 0 && <section><h2>Screenshots</h2><div>{screenshots.map((src,i)=><img key={src} src={src} alt={`${name} screenshot ${i+1}`} loading="lazy" style={{maxWidth:220}}/>)}</div></section>}
+      {screenshots.length > 0 && <section className="kl-public-screenshots"><div className="kl-public-section-heading"><h2>Screenshots</h2><span>{screenshots.length} images</span></div><div className="kl-public-screenshot-track">{screenshots.map((src,i)=><button className="kl-public-screenshot-thumb" key={src+i} type="button" onClick={()=>setActiveScreenshot(i)} aria-label={`Open screenshot ${i+1} of ${screenshots.length}`}><img src={src} alt={`${name} screenshot ${i+1}`} loading="lazy"/></button>)}</div></section>}
+      {activeScreenshot !== null && <div className="kl-screenshot-lightbox" role="dialog" aria-modal="true" aria-label="Screenshot preview" onClick={e=>{if(e.target===e.currentTarget)setActiveScreenshot(null)}} onTouchStart={e=>{(e.currentTarget as HTMLDivElement).dataset.touchX=String(e.touches[0].clientX)}} onTouchEnd={e=>{const start=Number((e.currentTarget as HTMLDivElement).dataset.touchX||0),delta=e.changedTouches[0].clientX-start;if(Math.abs(delta)>45)setActiveScreenshot(index=>index===null?null:(index+(delta<0?1:-1)+screenshots.length)%screenshots.length)}}><button className="kl-lightbox-close" type="button" onClick={()=>setActiveScreenshot(null)} aria-label="Close screenshot preview">×</button>{screenshots.length>1&&<button className="kl-lightbox-nav prev" type="button" onClick={()=>setActiveScreenshot(index=>index===null?null:(index-1+screenshots.length)%screenshots.length)} aria-label="Previous screenshot">‹</button>}<img src={screenshots[activeScreenshot]} alt={`${name} screenshot ${activeScreenshot+1}`}/>{screenshots.length>1&&<button className="kl-lightbox-nav next" type="button" onClick={()=>setActiveScreenshot(index=>index===null?null:(index+1)%screenshots.length)} aria-label="Next screenshot">›</button>}<div className="kl-lightbox-count">{activeScreenshot+1} / {screenshots.length}</div></div>}
       {list(d.changelog).length > 0 && <section><h2>What’s new</h2><ul>{list(d.changelog).map(x=><li key={x}>{x}</li>)}</ul></section>}
       <p>Listing information is provided for discovery. Always verify the publisher and permissions before installing software.</p>
     </main>
