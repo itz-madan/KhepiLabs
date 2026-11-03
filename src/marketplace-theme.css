@@ -232,3 +232,84 @@ html:not(.kl-light).kl-public-mode .kl-nav-admin{background:#22c55e;color:#fff}
  html:not(.kl-light).kl-public-mode .kl-nav{background:#191f29;border-color:#303846}
  html:not(.kl-light).kl-public-mode .kl-nav button{color:#e5e7eb}
 }
+
+
+/* Keep geometry identical in light and dark modes; animate only visual tokens. */
+html.kl-public-mode,html.kl-public-mode body,html.kl-public-mode .kl-app,
+html.kl-public-mode .kl-header,html.kl-public-mode .kl-hero,
+html.kl-public-mode .kl-feature-card,html.kl-public-mode .kl-hero-feature,
+html.kl-public-mode .kl-card,html.kl-public-mode .kl-reference-app-card,
+html.kl-public-mode .kl-bottom-cta,html.kl-public-mode .kl-footer,
+html.kl-public-mode .kl-site-footer,html.kl-public-mode .kl-search-wrap,
+html.kl-public-mode .kl-header-search,html.kl-public-mode .kl-theme,
+html.kl-public-mode .kl-secondary,html.kl-public-mode .kl-submit,
+html.kl-public-mode .kl-primary,html.kl-public-mode .kl-tabs button,
+html.kl-public-mode .kl-category-select select,html.kl-public-mode .kl-filter-trigger,
+html.kl-public-mode .kl-nav,html.kl-public-mode .kl-nav button,
+html.kl-public-mode .kl-nav-admin,html.kl-public-mode .kl-public-hero,
+html.kl-public-mode .kl-public-contact,html.kl-public-mode .kl-why-grid article,
+html.kl-public-mode .kl-detail,html.kl-public-mode .kl-detail-overlay,
+html.kl-public-mode .kl-card-body h3,html.kl-public-mode .kl-card-body p,
+html.kl-public-mode .kl-hero h1,html.kl-public-mode .kl-hero-copy>p,
+html.kl-public-mode .kl-feature-copy h3,html.kl-public-mode .kl-feature-copy p,
+html.kl-public-mode .kl-catalog-heading h2,html.kl-public-mode .kl-catalog-heading p,
+html.kl-public-mode .kl-bottom-cta h2,html.kl-public-mode .kl-bottom-cta p,
+html.kl-public-mode .kl-footer-main h3,html.kl-public-mode .kl-footer-main a,
+html.kl-public-mode .kl-footer-bottom,html.kl-public-mode .kl-public-copy h1,
+html.kl-public-mode .kl-public-copy>p{
+ transition:background-color .24s ease,color .24s ease,border-color .24s ease,box-shadow .24s ease,fill .24s ease;
+}
+html.kl-public-mode .kl-reference-hero{min-height:340px;padding:40px 0 28px;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:35px}
+html.kl-public-mode .kl-reference-hero h1{font-size:clamp(34px,3.1vw,49px);line-height:1.13;letter-spacing:-1.8px}
+html.kl-public-mode .kl-reference-hero .kl-hero-copy>p{font-size:17px;line-height:1.55}
+html.kl-public-mode .kl-hero-feature{min-height:282px}
+html.kl-public-mode .kl-hero-feature-inner{min-height:282px;padding:35px 64px;gap:24px}
+html.kl-public-mode .kl-hero-feature .kl-product-icon.large{width:96px;height:96px;min-width:96px;border-radius:24px;font-size:42px}
+html.kl-public-mode .kl-featured,html.kl-public-mode .kl-catalog{padding-top:64px;padding-bottom:68px}
+html.kl-public-mode .kl-product-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+html.kl-public-mode .kl-card{min-height:220px}
+@media(max-width:850px){
+ html.kl-public-mode .kl-reference-hero{grid-template-columns:1fr;gap:22px;padding:34px 0 26px;min-height:0}
+ html.kl-public-mode .kl-reference-hero h1{font-size:clamp(34px,6vw,46px)}
+ html.kl-public-mode .kl-hero-feature{min-height:230px}
+ html.kl-public-mode .kl-hero-feature-inner{min-height:230px;padding:28px 52px;gap:20px}
+ html.kl-public-mode .kl-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ html.kl-public-mode .kl-header{height:72px;min-height:72px;padding:0 12px;gap:8px}
+ html.kl-public-mode .kl-reference-hero{padding:30px 0 24px;gap:18px}
+ html.kl-public-mode .kl-reference-hero h1{font-size:clamp(33px,8.8vw,43px);line-height:1.12;letter-spacing:-1.25px;margin:14px 0 12px}
+ html.kl-public-mode .kl-reference-hero .kl-hero-copy>p{font-size:14px;line-height:1.65;margin-bottom:18px}
+ html.kl-public-mode .kl-hero-ctas{gap:9px}
+ html.kl-public-mode .kl-hero-ctas .kl-primary,html.kl-public-mode .kl-hero-ctas .kl-secondary{min-width:0;min-height:46px;padding:10px 14px;font-size:12px;border-radius:999px}
+ html.kl-public-mode .kl-hero-feature{min-height:195px;border-radius:17px}
+ html.kl-public-mode .kl-hero-feature-inner{min-height:195px;padding:22px 34px;gap:13px}
+ html.kl-public-mode .kl-hero-feature .kl-product-icon.large{width:70px;height:70px;min-width:70px;border-radius:19px;font-size:32px}
+ html.kl-public-mode .kl-hero-feature-copy h2{font-size:19px}
+ html.kl-public-mode .kl-hero-feature-copy>p{font-size:11px}
+ html.kl-public-mode .kl-hero-feature-copy .kl-feature-details{font-size:10px;gap:8px;margin:9px 0}
+ html.kl-public-mode .kl-feature-arrow{width:30px;height:30px;font-size:21px}
+ html.kl-public-mode .kl-feature-arrow.prev{left:7px}
+ html.kl-public-mode .kl-feature-arrow.next{right:7px}
+ html.kl-public-mode .kl-hero-feature-dots{bottom:9px}
+ html.kl-public-mode .kl-featured,html.kl-public-mode .kl-catalog{padding:38px 0 42px}
+ html.kl-public-mode .kl-featured-head h2,html.kl-public-mode .kl-catalog-heading h2{font-size:23px}
+ html.kl-public-mode .kl-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ html.kl-public-mode .kl-card{min-height:190px;padding:13px}
+ html.kl-public-mode .kl-card-body h3{font-size:15px}
+ html.kl-public-mode .kl-card-body p{font-size:10px}
+ html.kl-public-mode .kl-bottom-cta{margin:0 0 42px;padding:42px 16px}
+ html.kl-public-mode .kl-footer-main{gap:22px 15px}
+}
+@media(max-width:370px){
+ html.kl-public-mode .kl-brand{font-size:14px}
+ html.kl-public-mode .kl-header{padding:0 9px;gap:6px}
+ html.kl-public-mode .kl-theme{width:30px;height:30px;flex-basis:30px}
+ html.kl-public-mode .kl-menu-toggle{width:27px;flex-basis:27px}
+ html.kl-public-mode .kl-header-search input::placeholder{font-size:10px}
+ html.kl-public-mode .kl-hero-feature-inner{padding-left:29px;padding-right:29px}
+ html.kl-public-mode .kl-hero-feature .kl-product-icon.large{width:58px;height:58px;min-width:58px}
+}
+@media(prefers-reduced-motion:reduce){
+ html.kl-public-mode *,html.kl-public-mode *::before,html.kl-public-mode *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
