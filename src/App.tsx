@@ -24,7 +24,13 @@ function App() {
   useEffect(() => {
     const isAdmin = route === '/admin';
     document.documentElement.classList.toggle('kl-public-mode', !isAdmin);
-    document.documentElement.classList.toggle('kl-light', !isAdmin);
+    if (isAdmin) {
+      document.documentElement.classList.remove('kl-light');
+    } else {
+      let savedTheme = 'light';
+      try { savedTheme = localStorage.getItem('khl-theme') || 'light'; } catch { /* storage unavailable */ }
+      document.documentElement.classList.toggle('kl-light', savedTheme !== 'dark');
+    }
   }, [route]);
   if (route === '/admin') return <AdminGate>{({role,userId})=><AdminPanel role={role} userId={userId}/>}</AdminGate>;
   const detail = route.match(/^\/(?:apps|games)\/([^/]+)$/);
