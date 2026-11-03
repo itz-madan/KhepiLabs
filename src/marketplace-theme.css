@@ -379,3 +379,36 @@ html.kl-public-mode .kl-featured,html.kl-public-mode .kl-catalog{padding-top:58p
  html.kl-public-mode .kl-theme{width:29px!important;height:29px!important;flex-basis:29px!important}
  html.kl-public-mode .kl-menu-toggle{width:26px!important;flex-basis:26px!important}
 }
+
+
+/* Catalogue view-specific app card layouts */
+.kl-reference-grid.kl-view-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:16px}
+.kl-reference-grid.kl-view-grid .kl-reference-app-card{min-height:190px;padding:18px 12px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:12px;text-align:center;cursor:pointer}
+.kl-reference-grid.kl-view-grid .kl-product-icon{width:76px;height:76px;flex:0 0 76px;border-radius:20px}
+.kl-reference-grid.kl-view-grid .kl-reference-app-info{width:100%;min-width:0}
+.kl-reference-grid.kl-view-grid .kl-reference-app-info h3{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kl-reference-grid.kl-view-grid .kl-reference-version{margin:5px 0 0;font-size:11px;line-height:1.35;opacity:.68}
+
+.kl-reference-grid.kl-view-list{display:flex;flex-direction:column;gap:9px}
+.kl-reference-grid.kl-view-list .kl-reference-app-card{min-height:70px;padding:11px 14px;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:13px;text-align:left;cursor:pointer}
+.kl-reference-grid.kl-view-list .kl-product-icon{width:46px;height:46px;flex:0 0 46px;border-radius:13px}
+.kl-reference-grid.kl-view-list .kl-reference-app-info{min-width:0;flex:1}
+.kl-reference-grid.kl-view-list .kl-reference-app-info h3{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kl-reference-grid.kl-view-list .kl-reference-version{margin:4px 0 0;font-size:11px;line-height:1.3;opacity:.68}
+
+.kl-reference-grid.kl-view-card{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.kl-reference-grid.kl-view-card .kl-reference-app-card{min-height:250px;padding:24px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px;text-align:center;cursor:pointer}
+.kl-reference-grid.kl-view-card .kl-product-icon{width:104px;height:104px;flex:0 0 104px;border-radius:27px}
+.kl-reference-grid.kl-view-card .kl-reference-app-info{width:100%;min-width:0}
+.kl-reference-grid.kl-view-card .kl-reference-app-info h3{margin:0;font-size:18px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kl-reference-grid.kl-view-card .kl-reference-version{margin:7px 0 0;font-size:12px;opacity:.68}
+
+.kl-reference-grid.kl-view-mixed{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:14px}
+.kl-reference-grid.kl-view-mixed .kl-reference-app-card{min-height:154px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;cursor:pointer}
+.kl-reference-grid.kl-view-mixed .kl-product-icon{width:62px;height:62px;flex:0 0 62px;border-radius:18px}
+.kl-reference-grid.kl-view-mixed .kl-reference-app-info{width:100%;min-width:0}
+.kl-reference-grid.kl-view-mixed .kl-reference-app-info h3{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kl-reference-grid.kl-view-mixed .kl-reference-version{margin:5px 0 0;font-size:11px;opacity:.68}
+.kl-reference-app-card:focus-visible{outline:2px solid #22c55e;outline-offset:3px}
+.kl-reference-app-info .kl-reference-version{color:inherit}
+@media(max-width:520px){.kl-reference-grid.kl-view-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.kl-reference-grid.kl-view-card{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.kl-reference-grid.kl-view-card .kl-reference-app-card{min-height:205px;padding:17px 10px}.kl-reference-grid.kl-view-card .kl-product-icon{width:78px;height:78px;flex-basis:78px}.kl-reference-grid.kl-view-mixed{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
