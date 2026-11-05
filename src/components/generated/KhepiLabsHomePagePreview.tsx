@@ -127,10 +127,14 @@ const isEntry = (value: unknown): value is Entry => {
     (entry.changelog === undefined || (Array.isArray(entry.changelog) && entry.changelog.every((item) => typeof item === "string")));
 };
 const safeExternalUrl = (value?: string) => {
-  if (!value) return undefined;
+  const raw = value?.trim();
+  if (!raw) return undefined;
   try {
-    const url = new URL(value, window.location.origin);
-    return url.protocol === "https:" || url.protocol === "http:" ? value : undefined;
+    // Admin entries often contain a bare domain (e.g. www.example.com).
+    // Normalize those to HTTPS instead of treating them as a path on this site.
+    const candidate = /^[a-z][a-z\d+.-]*:\/\//i.test(raw) ? raw : `https://${raw}`;
+    const url = new URL(candidate);
+    return url.protocol === "https:" || url.protocol === "http:" ? url.href : undefined;
   } catch {
     return undefined;
   }
@@ -163,7 +167,23 @@ function ProductIcon({
   large?: boolean;
 }) {
   const iconIsImage = !!item.icon && (item.icon.startsWith("https://") || item.icon.startsWith("http://") || item.icon.startsWith("data:image/"));
-  return <div className={large ? "kl-product-icon large" : "kl-product-icon"} style={{background:item.iconBg || "linear-gradient(135deg,#65758c,#293548)"}}>{iconIsImage?<img src={item.icon} alt="" loading="lazy"/>:item.icon||item.name.slice(0,1)}</div>;
+  const brand = (item.iconBg || "").trim().toLowerCase();
+  const brandBackgrounds: Record<string, string> = {
+    youtube: "linear-gradient(135deg,#ff4545 0%,#c90024 100%)",
+    instagram: "linear-gradient(135deg,#ffb347 0%,#e1306c 52%,#833ab4 100%)",
+    spotify: "linear-gradient(135deg,#1ed760,#087b3b)",
+    telegram: "linear-gradient(135deg,#35baf2,#0878bd)",
+    whatsapp: "linear-gradient(135deg,#25d366,#087c48)",
+    chrome: "linear-gradient(135deg,#4285f4,#34a853 48%,#fbbc05 72%,#ea4335)",
+    netflix: "linear-gradient(135deg,#e50914,#65000a)"
+  };
+  const isCssBackground = /^(#([\da-f]{3,8})|rgba?\(|hsla?\(|(linear|radial|conic)-gradient\()/i.test(item.iconBg || "");
+  const background = brandBackgrounds[brand] || (isCssBackground ? item.iconBg! : "linear-gradient(135deg,#65758c,#293548)");
+  const fallbackGlyph = !item.icon && brand === "youtube" ? "▶" : item.icon || item.name.trim().slice(0, 1).toUpperCase();
+  return <div className={large ? "kl-product-icon large" : "kl-product-icon"} style={{background}}>
+    <span className="kl-product-icon-fallback" aria-hidden="true">{fallbackGlyph}</span>
+    {iconIsImage && <img src={item.icon} alt="" loading="lazy" onError={event => { event.currentTarget.style.display = "none"; }}/>}
+  </div>;
 }
 export function KhepiLabsHomePagePreview() {
   const [items, setItems] = useState<Entry[]>(() => {
@@ -420,7 +440,7 @@ export function KhepiLabsHomePagePreview() {
       <section className="kl-category-pills" aria-label="Browse categories">{["All","Tools","Photo & Video","Music & Audio","Productivity","Entertainment","Games","Customization"].map((name,i)=><button className={(i===0&&category==="All")||category===name?"active":""} key={name} onClick={()=>{setCategory(i===0?"All":name);setActive(name==="Games"?"Games":"All");scrollToCatalog();}}><span>{["▦","⚒","▧","♫","▱","⊙","♧","◉"][i]}</span>{name}</button>)}</section>
       <section className="kl-catalog kl-reference-catalog" id="catalog">
         <div className="kl-reference-catalog-heading"><div><h2>Featured Apps</h2><p>Handpicked apps for a better Android experience</p></div><div className="kl-reference-view"><span>View:</span><div className="kl-view-picker"><button className="kl-view-picker-trigger" aria-expanded={viewMenuOpen} onClick={()=>setViewMenuOpen(v=>!v)}><span>{viewMode==="list"?"☷":viewMode==="grid"?"▦":viewMode==="card"?"▣":"◫"}</span><b>{viewMode[0].toUpperCase()+viewMode.slice(1)}</b><i>⌄</i></button>{viewMenuOpen&&<><button className="kl-view-dismiss" aria-label="Close view selector" onClick={()=>setViewMenuOpen(false)}/><div className="kl-view-menu">{(["grid","list","card","mixed"] as const).map(mode=><button key={mode} className={viewMode===mode?"active":""} onClick={()=>{setViewMode(mode);setViewMenuOpen(false);}}><span>{mode==="list"?"☷":mode==="grid"?"▦":mode==="card"?"▣":"◫"}</span>{mode[0].toUpperCase()+mode.slice(1)} View{viewMode===mode&&<b>✓</b>}</button>)}</div></>}</div></div></div>
-        <div className={"kl-product-grid kl-reference-grid kl-view-"+viewMode}>{filtered.map(p=><article key={p.id} className="kl-reference-app-card" role="button" tabIndex={0} onClick={()=>open(p)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open(p);}}}><ProductIcon item={p}/><div className="kl-reference-app-info"><h3>{p.name}</h3><p>{p.category}</p><div><span>★ {p.rating||"New"}</span><span>⇩ {p.downloads||"—"}</span></div></div><button className="kl-reference-download" aria-label={"Download "+p.name} onClick={e=>{e.stopPropagation();if(safeExternalUrl(p.apk)){void supabase.rpc("record_app_download",{p_app_id:p.id});window.open(safeExternalUrl(p.apk),"_blank","noopener,noreferrer");}else open(p);}}>⇩</button></article>)}</div>
+        <div className={"kl-product-grid kl-reference-grid kl-view-"+viewMode}>{filtered.map(p=><article key={p.id} className="kl-reference-app-card" role="button" tabIndex={0} aria-label={`View ${p.name} details`} onClick={()=>open(p)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open(p);}}}><ProductIcon item={p}/><div className="kl-reference-app-info"><h3>{p.name}</h3><p className="kl-reference-version">{p.version ? `Version ${p.version}` : "Version not specified"}</p></div></article>)}</div>
         {!filtered.length&&<div className="kl-empty"><span>⌕</span><h3>No matching apps found.</h3><p>Try another search or category.</p><button onClick={()=>{setSearch("");setCategory("All");setActive("All");}}>Clear filters</button></div>}
       </section>
       <section className="kl-bottom-cta"><div className="kl-cta-glow" /><div className="kl-eyebrow">A LITTLE MORE DISCOVERY</div><h2>Good finds deserve<br /><em>to be shared.</em></h2><p>Know something worth discovering? Let’s put it on the map.</p><button className="kl-primary" onClick={() => notify("Submission portal will be available soon")}>Suggest an app <span>↗</span></button></section>

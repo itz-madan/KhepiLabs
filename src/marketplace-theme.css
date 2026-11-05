@@ -379,3 +379,300 @@ html.kl-public-mode .kl-featured,html.kl-public-mode .kl-catalog{padding-top:58p
  html.kl-public-mode .kl-theme{width:29px!important;height:29px!important;flex-basis:29px!important}
  html.kl-public-mode .kl-menu-toggle{width:26px!important;flex-basis:26px!important}
 }
+
+
+/* Catalogue view-specific app card layouts */
+.kl-reference-grid.kl-view-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:16px}
+.kl-reference-grid.kl-view-grid .kl-reference-app-card{min-height:190px;padding:18px 12px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:12px;text-align:center;cursor:pointer}
+.kl-reference-grid.kl-view-grid .kl-product-icon{width:76px;height:76px;flex:0 0 76px;border-radius:20px}
+.kl-reference-grid.kl-view-grid .kl-reference-app-info{width:100%;min-width:0}
+.kl-reference-grid.kl-view-grid .kl-reference-app-info h3{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kl-reference-grid.kl-view-grid .kl-reference-version{margin:5px 0 0;font-size:11px;line-height:1.35;opacity:.68}
+
+.kl-reference-grid.kl-view-list{display:flex;flex-direction:column;gap:9px}
+.kl-reference-grid.kl-view-list .kl-reference-app-card{min-height:70px;padding:11px 14px;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:13px;text-align:left;cursor:pointer}
+.kl-reference-grid.kl-view-list .kl-product-icon{width:46px;height:46px;flex:0 0 46px;border-radius:13px}
+.kl-reference-grid.kl-view-list .kl-reference-app-info{min-width:0;flex:1}
+.kl-reference-grid.kl-view-list .kl-reference-app-info h3{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kl-reference-grid.kl-view-list .kl-reference-version{margin:4px 0 0;font-size:11px;line-height:1.3;opacity:.68}
+
+.kl-reference-grid.kl-view-card{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.kl-reference-grid.kl-view-card .kl-reference-app-card{min-height:250px;padding:24px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px;text-align:center;cursor:pointer}
+.kl-reference-grid.kl-view-card .kl-product-icon{width:104px;height:104px;flex:0 0 104px;border-radius:27px}
+.kl-reference-grid.kl-view-card .kl-reference-app-info{width:100%;min-width:0}
+.kl-reference-grid.kl-view-card .kl-reference-app-info h3{margin:0;font-size:18px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kl-reference-grid.kl-view-card .kl-reference-version{margin:7px 0 0;font-size:12px;opacity:.68}
+
+.kl-reference-grid.kl-view-mixed{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:14px}
+.kl-reference-grid.kl-view-mixed .kl-reference-app-card{min-height:154px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;cursor:pointer}
+.kl-reference-grid.kl-view-mixed .kl-product-icon{width:62px;height:62px;flex:0 0 62px;border-radius:18px}
+.kl-reference-grid.kl-view-mixed .kl-reference-app-info{width:100%;min-width:0}
+.kl-reference-grid.kl-view-mixed .kl-reference-app-info h3{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kl-reference-grid.kl-view-mixed .kl-reference-version{margin:5px 0 0;font-size:11px;opacity:.68}
+.kl-reference-app-card:focus-visible{outline:2px solid #22c55e;outline-offset:3px}
+.kl-reference-app-info .kl-reference-version{color:inherit}
+@media(max-width:520px){.kl-reference-grid.kl-view-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.kl-reference-grid.kl-view-card{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.kl-reference-grid.kl-view-card .kl-reference-app-card{min-height:205px;padding:17px 10px}.kl-reference-grid.kl-view-card .kl-product-icon{width:78px;height:78px;flex-basis:78px}.kl-reference-grid.kl-view-mixed{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+
+
+/* Public app detail screenshot gallery */
+.kl-public-screenshots{margin:34px 0 28px;min-width:0}
+.kl-public-section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.kl-public-section-heading h2{margin:0}
+.kl-public-section-heading span{font-size:12px;color:var(--kl-muted,#8b95a7)}
+.kl-public-screenshot-track{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 12px;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}
+.kl-public-screenshot-thumb{flex:0 0 auto;width:clamp(150px,22vw,220px);height:clamp(270px,38vw,390px);padding:0;border:1px solid rgba(130,145,170,.22);border-radius:16px;overflow:hidden;background:#111827;cursor:zoom-in;scroll-snap-align:start}
+.kl-public-screenshot-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.kl-public-screenshot-thumb:focus-visible{outline:2px solid #22c55e;outline-offset:3px}
+.kl-screenshot-lightbox{position:fixed;inset:0;z-index:1000;background:rgba(3,6,12,.94);display:flex;align-items:center;justify-content:center;padding:54px 64px 64px;touch-action:pan-y}
+.kl-screenshot-lightbox>img{display:block;max-width:min(100%,1000px);max-height:calc(100vh - 120px);object-fit:contain;border-radius:8px;user-select:none}
+.kl-lightbox-close,.kl-lightbox-nav{position:absolute;border:1px solid rgba(255,255,255,.22);background:rgba(20,25,36,.8);color:white;display:grid;place-items:center;cursor:pointer}
+.kl-lightbox-close{right:20px;top:18px;width:42px;height:42px;border-radius:50%;font-size:27px}
+.kl-lightbox-nav{top:50%;transform:translateY(-50%);width:44px;height:54px;border-radius:12px;font-size:32px}
+.kl-lightbox-nav.prev{left:14px}.kl-lightbox-nav.next{right:14px}
+.kl-lightbox-count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#e5e7eb;background:#111827cc;padding:6px 12px;border-radius:20px;font-size:12px}
+@media(max-width:600px){.kl-public-screenshot-thumb{width:156px;height:280px}.kl-screenshot-lightbox{padding:56px 12px 62px}.kl-lightbox-nav{width:34px;height:44px}.kl-lightbox-nav.prev{left:5px}.kl-lightbox-nav.next{right:5px}.kl-screenshot-lightbox>img{max-width:100%;max-height:calc(100vh - 130px)}}
+
+
+/* KhepiLabs responsive parity repair */
+html.kl-public-mode{scroll-padding-top:76px}
+html.kl-public-mode body{overflow-x:clip}
+html.kl-public-mode .kl-app{width:100%;min-width:0;overflow:clip}
+html.kl-public-mode .kl-header{position:sticky!important;top:0!important;z-index:100!important;width:100%;box-sizing:border-box;justify-content:space-between!important;flex-wrap:nowrap!important}
+html.kl-public-mode .kl-reference-hero,html.kl-public-mode .kl-category-pills,html.kl-public-mode .kl-reference-catalog{width:min(calc(100% - 48px),1440px)!important;max-width:1440px!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box}
+html.kl-public-mode .kl-reference-grid{width:100%;min-width:0}
+html.kl-public-mode .kl-reference-app-card{box-sizing:border-box;min-width:0;overflow:hidden;background:var(--panel,#fff);color:var(--text,#111827);border-color:var(--line,#e5e7eb)}
+html.kl-public-mode .kl-reference-app-info{min-width:0}
+html.kl-public-mode .kl-reference-app-info h3,html.kl-public-mode .kl-reference-version{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Grid: icon above name and version */
+html.kl-public-mode .kl-reference-grid.kl-view-grid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(168px,1fr))!important;gap:16px!important}
+html.kl-public-mode .kl-reference-grid.kl-view-grid .kl-reference-app-card{min-height:198px!important;padding:20px 14px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:12px!important;text-align:center!important}
+html.kl-public-mode .kl-reference-grid.kl-view-grid .kl-product-icon{width:78px!important;height:78px!important;flex:0 0 78px!important;border-radius:21px!important}
+html.kl-public-mode .kl-reference-grid.kl-view-grid .kl-reference-app-info{width:100%}
+html.kl-public-mode .kl-reference-grid.kl-view-grid .kl-reference-version{margin:5px 0 0;font-size:11px}
+
+/* List: smaller icon beside stacked name and version */
+html.kl-public-mode .kl-reference-grid.kl-view-list{display:flex!important;flex-direction:column!important;gap:10px!important}
+html.kl-public-mode .kl-reference-grid.kl-view-list .kl-reference-app-card{min-height:76px!important;padding:12px 16px!important;display:flex!important;flex-direction:row!important;align-items:center!important;gap:14px!important;text-align:left!important}
+html.kl-public-mode .kl-reference-grid.kl-view-list .kl-product-icon{width:48px!important;height:48px!important;flex:0 0 48px!important;border-radius:14px!important}
+html.kl-public-mode .kl-reference-grid.kl-view-list .kl-reference-app-info{flex:1 1 auto;width:auto}
+html.kl-public-mode .kl-reference-grid.kl-view-list .kl-reference-version{margin:4px 0 0;font-size:11px}
+
+/* Card: bigger presentation */
+html.kl-public-mode .kl-reference-grid.kl-view-card{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))!important;gap:20px!important}
+html.kl-public-mode .kl-reference-grid.kl-view-card .kl-reference-app-card{min-height:286px!important;padding:28px 20px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:18px!important;text-align:center!important}
+html.kl-public-mode .kl-reference-grid.kl-view-card .kl-product-icon{width:112px!important;height:112px!important;flex:0 0 112px!important;border-radius:29px!important}
+html.kl-public-mode .kl-reference-grid.kl-view-card .kl-reference-app-info{width:100%}
+html.kl-public-mode .kl-reference-grid.kl-view-card .kl-reference-app-info h3{font-size:18px}
+html.kl-public-mode .kl-reference-grid.kl-view-card .kl-reference-version{margin:7px 0 0;font-size:12px}
+
+/* Mixed: compact tiles */
+html.kl-public-mode .kl-reference-grid.kl-view-mixed{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))!important;gap:14px!important}
+html.kl-public-mode .kl-reference-grid.kl-view-mixed .kl-reference-app-card{min-height:166px!important;padding:16px 12px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:10px!important;text-align:center!important}
+html.kl-public-mode .kl-reference-grid.kl-view-mixed .kl-product-icon{width:64px!important;height:64px!important;flex:0 0 64px!important;border-radius:18px!important}
+html.kl-public-mode .kl-reference-grid.kl-view-mixed .kl-reference-app-info{width:100%}
+html.kl-public-mode .kl-reference-grid.kl-view-mixed .kl-reference-version{margin:5px 0 0;font-size:11px}
+
+@media(max-width:850px){
+ html.kl-public-mode .kl-header{height:68px!important;min-height:68px!important;padding:0 12px!important;gap:8px!important}
+ html.kl-public-mode .kl-header-search{display:flex!important;flex:1 1 auto!important;min-width:0!important;max-width:none!important;margin:0!important}
+ html.kl-public-mode .kl-header-actions{flex:0 0 auto!important;margin-left:0!important}
+ html.kl-public-mode .kl-nav{position:absolute!important;top:67px!important;left:auto!important;right:10px!important;width:min(260px,calc(100vw - 20px))!important;display:none!important;flex-direction:column!important;align-items:stretch!important;padding:8px!important}
+ html.kl-public-mode .kl-nav.open{display:flex!important}
+ html.kl-public-mode .kl-menu-toggle{display:grid!important}
+ html.kl-public-mode .kl-reference-hero{width:calc(100% - 32px)!important;margin:16px auto 20px!important;display:flex!important;flex-direction:column!important;gap:20px!important;min-height:0!important;padding:26px 20px 22px!important}
+ html.kl-public-mode .kl-reference-hero .kl-hero-copy{width:100%;max-width:none}
+ html.kl-public-mode .kl-reference-hero h1{max-width:100%;font-size:clamp(32px,7vw,44px)!important}
+ html.kl-public-mode .kl-hero-feature,html.kl-public-mode .kl-hero-feature-inner{min-height:205px!important}
+ html.kl-public-mode .kl-hero-feature-inner{padding:24px 42px!important}
+ html.kl-public-mode .kl-category-pills{width:100%!important;max-width:none!important;margin:0 0 20px!important;padding:8px 16px 13px!important;overflow-x:auto!important;overflow-y:hidden!important;flex-wrap:nowrap!important;justify-content:flex-start!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ html.kl-public-mode .kl-category-pills::-webkit-scrollbar{display:none}
+ html.kl-public-mode .kl-category-pills button{flex:0 0 auto}
+ html.kl-public-mode .kl-reference-catalog{width:calc(100% - 32px)!important;margin:0 auto!important;padding:20px 0 42px!important}
+ html.kl-public-mode .kl-reference-grid.kl-view-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:11px!important}
+ html.kl-public-mode .kl-reference-grid.kl-view-card,html.kl-public-mode .kl-reference-grid.kl-view-mixed{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:11px!important}
+ html.kl-public-mode .kl-reference-grid.kl-view-list{display:flex!important}
+ html.kl-public-mode .kl-bottom-cta{width:calc(100% - 32px)!important;margin:24px auto 48px!important;min-height:260px!important;padding:40px 20px!important;box-sizing:border-box}
+ html.kl-public-mode .kl-footer-main{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:28px 20px!important}
+}
+@media(max-width:560px){
+ html.kl-public-mode .kl-header{padding:0 9px!important;gap:6px!important}
+ html.kl-public-mode .kl-brand{font-size:14px!important;gap:6px!important}
+ html.kl-public-mode .kl-brand-mark{width:29px!important;height:29px!important;flex-basis:29px!important}
+ html.kl-public-mode .kl-header-search{height:35px!important;min-height:35px!important;padding:0 8px!important}
+ html.kl-public-mode .kl-header-search input{font-size:11px!important}
+ html.kl-public-mode .kl-theme{width:29px!important;height:29px!important;flex-basis:29px!important}
+ html.kl-public-mode .kl-menu-toggle{width:26px!important;height:30px!important;flex-basis:26px!important}
+ html.kl-public-mode .kl-reference-hero{width:calc(100% - 24px)!important;padding:22px 16px 18px!important}
+ html.kl-public-mode .kl-reference-hero h1{font-size:clamp(29px,8vw,36px)!important}
+ html.kl-public-mode .kl-hero-ctas{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+ html.kl-public-mode .kl-hero-ctas button{min-width:0!important;padding:9px 8px!important;font-size:10px!important}
+ html.kl-public-mode .kl-hero-feature,html.kl-public-mode .kl-hero-feature-inner{min-height:178px!important}
+ html.kl-public-mode .kl-hero-feature-inner{padding:20px 32px!important}
+ html.kl-public-mode .kl-hero-feature .kl-product-icon.large{width:58px!important;height:58px!important;min-width:58px!important}
+ html.kl-public-mode .kl-category-pills{padding-left:12px!important;padding-right:12px!important}
+ html.kl-public-mode .kl-reference-catalog{width:calc(100% - 24px)!important}
+ html.kl-public-mode .kl-reference-catalog-heading{align-items:flex-start!important}
+ html.kl-public-mode .kl-reference-grid.kl-view-grid .kl-reference-app-card,html.kl-public-mode .kl-reference-grid.kl-view-mixed .kl-reference-app-card{min-height:150px!important;padding:14px 8px!important}
+ html.kl-public-mode .kl-reference-grid.kl-view-grid .kl-product-icon{width:62px!important;height:62px!important;flex-basis:62px!important}
+ html.kl-public-mode .kl-reference-grid.kl-view-card .kl-reference-app-card{min-height:215px!important;padding:18px 10px!important}
+ html.kl-public-mode .kl-reference-grid.kl-view-card .kl-product-icon{width:82px!important;height:82px!important;flex-basis:82px!important}
+ html.kl-public-mode .kl-reference-grid.kl-view-list .kl-reference-app-card{min-height:70px!important;padding:10px 11px!important}
+ html.kl-public-mode .kl-reference-grid.kl-view-list .kl-product-icon{width:42px!important;height:42px!important;flex-basis:42px!important}
+ html.kl-public-mode .kl-bottom-cta{width:calc(100% - 24px)!important;padding:34px 16px!important}
+ html.kl-public-mode .kl-footer-main{grid-template-columns:minmax(0,1fr)!important;gap:24px!important}
+ html.kl-public-mode .kl-footer-bottom{flex-wrap:wrap;gap:8px 18px}
+}
+
+
+/* Follow-up QA: align nested sections to the main container and prevent tablet header crowding */
+@media(min-width:851px){
+ html.kl-public-mode .kl-header{max-width:1240px;padding-left:30px!important;padding-right:30px!important}
+ html.kl-public-mode .kl-menu-toggle{display:none!important}
+}
+@media(max-width:980px){
+ html.kl-public-mode .kl-header{height:68px!important;min-height:68px!important;padding:0 12px!important;gap:8px!important}
+ html.kl-public-mode .kl-brand{font-size:15px!important;gap:7px!important}
+ html.kl-public-mode .kl-brand-mark{width:31px!important;height:31px!important;flex-basis:31px!important}
+ html.kl-public-mode .kl-nav{display:none!important}
+ html.kl-public-mode .kl-nav.open{display:flex!important}
+ html.kl-public-mode .kl-menu-toggle{display:grid!important;place-items:center!important}
+ html.kl-public-mode .kl-header-search{display:flex!important;flex:1 1 auto!important;min-width:0!important;max-width:none!important;height:38px!important;margin:0!important}
+}
+@media(max-width:850px){
+ html.kl-public-mode .kl-reference-hero,
+ html.kl-public-mode .kl-category-pills,
+ html.kl-public-mode .kl-reference-catalog{width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important}
+ html.kl-public-mode .kl-reference-hero{padding-left:20px!important;padding-right:20px!important}
+ html.kl-public-mode .kl-category-pills{padding-left:16px!important;padding-right:16px!important}
+ html.kl-public-mode .kl-reference-catalog{padding-left:0!important;padding-right:0!important}
+ html.kl-public-mode .kl-bottom-cta{width:100%!important;margin-left:0!important;margin-right:0!important}
+}
+@media(max-width:560px){
+ html.kl-public-mode .kl-reference-hero{padding-left:16px!important;padding-right:16px!important}
+ html.kl-public-mode .kl-category-pills{padding-left:12px!important;padding-right:12px!important}
+ html.kl-public-mode .kl-reference-catalog{width:100%!important}
+ html.kl-public-mode .kl-bottom-cta{width:100%!important}
+ html.kl-public-mode .kl-footer-main>div{min-width:0}
+ html.kl-public-mode .kl-footer-main a{overflow-wrap:anywhere}
+}
+html.kl-public-mode .kl-product-icon{overflow:hidden}
+html.kl-public-mode .kl-product-icon img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
+html.kl-public-mode .kl-reference-app-card:focus-visible{outline:2px solid #22c55e;outline-offset:3px}
+
+
+/* Theme-stable header geometry: theme glyphs may change, navigation must not shift */
+@media(min-width:981px){
+ html.kl-public-mode .kl-header{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important}
+ html.kl-public-mode .kl-header>.kl-brand{flex:0 0 210px!important;width:210px!important;min-width:210px!important}
+ html.kl-public-mode .kl-header>.kl-nav{flex:0 0 430px!important;width:430px!important;min-width:430px!important;justify-content:center!important;gap:22px!important;white-space:nowrap!important}
+ html.kl-public-mode .kl-header>.kl-nav>button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;white-space:nowrap!important}
+ html.kl-public-mode .kl-header>.kl-nav .kl-nav-icon{display:inline-grid!important;place-items:center!important;width:16px!important;min-width:16px!important;height:18px!important;line-height:1!important}
+ html.kl-public-mode .kl-header-search{flex:1 1 240px!important;width:auto!important;min-width:180px!important;max-width:300px!important}
+ html.kl-public-mode .kl-header-actions{flex:0 0 42px!important;width:42px!important;min-width:42px!important;justify-content:flex-end!important}
+}
+html.kl-public-mode .kl-theme{display:inline-grid!important;place-items:center!important;width:36px!important;height:36px!important;min-width:36px!important;flex:0 0 36px!important;padding:0!important;line-height:1!important;font-size:19px!important;font-family:Arial,sans-serif!important}
+html.kl-public-mode .kl-header-actions{display:flex!important;align-items:center!important;gap:8px!important}
+html.kl-public-mode .kl-nav button{line-height:1.2!important}
+html.kl-public-mode .kl-product-icon{display:grid!important;place-items:center!important;position:relative!important;isolation:isolate!important;overflow:hidden!important}
+html.kl-public-mode .kl-product-icon-fallback{position:relative!important;z-index:0!important;display:grid!important;place-items:center!important;width:100%!important;height:100%!important;line-height:1!important;font-weight:800!important;color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.22)!important}
+html.kl-public-mode .kl-product-icon img{position:absolute!important;z-index:1!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;border-radius:inherit!important;display:block}
+@media(max-width:980px){
+ html.kl-public-mode .kl-header>.kl-brand{flex:0 0 auto!important;min-width:max-content!important}
+ html.kl-public-mode .kl-header-search{flex:1 1 0!important;width:auto!important;min-width:0!important}
+ html.kl-public-mode .kl-header-actions{flex:0 0 auto!important}
+ html.kl-public-mode .kl-theme{width:34px!important;height:34px!important;min-width:34px!important;flex-basis:34px!important}
+}
+@media(max-width:560px){
+ html.kl-public-mode .kl-header-actions{gap:5px!important}
+ html.kl-public-mode .kl-theme{width:29px!important;height:29px!important;min-width:29px!important;flex-basis:29px!important;font-size:17px!important}
+}
+
+
+/* Final desktop alignment: reserve a dedicated, non-overlapping search column */
+@media(min-width:981px){
+ html.kl-public-mode .kl-header{
+   display:grid!important;
+   grid-template-columns:165px minmax(520px,1fr) 260px 42px!important;
+   align-items:center!important;
+   justify-content:stretch!important;
+   column-gap:14px!important;
+   width:calc(100% - 48px)!important;
+   max-width:1240px!important;
+   box-sizing:border-box!important;
+   padding-left:24px!important;
+   padding-right:24px!important;
+ }
+ html.kl-public-mode .kl-header>.kl-brand{
+   grid-column:1!important;
+   width:165px!important;
+   min-width:0!important;
+   flex:none!important;
+   white-space:nowrap!important;
+ }
+ html.kl-public-mode .kl-header>.kl-nav{
+   grid-column:2!important;
+   display:flex!important;
+   position:static!important;
+   width:100%!important;
+   min-width:0!important;
+   max-width:none!important;
+   flex:none!important;
+   align-items:center!important;
+   justify-content:space-between!important;
+   gap:12px!important;
+   white-space:nowrap!important;
+   overflow:visible!important;
+ }
+ html.kl-public-mode .kl-header>.kl-nav>button,
+ html.kl-public-mode .kl-header>.kl-nav>.kl-nav-admin{
+   flex:0 0 auto!important;
+   min-width:max-content!important;
+   white-space:nowrap!important;
+ }
+ html.kl-public-mode .kl-header>.kl-header-search{
+   grid-column:3!important;
+   width:260px!important;
+   min-width:260px!important;
+   max-width:260px!important;
+   flex:none!important;
+   justify-self:stretch!important;
+   box-sizing:border-box!important;
+   margin:0!important;
+ }
+ html.kl-public-mode .kl-header>.kl-header-actions{
+   grid-column:4!important;
+   width:42px!important;
+   min-width:42px!important;
+   flex:none!important;
+   justify-self:end!important;
+   margin:0!important;
+ }
+ html.kl-public-mode .kl-header>.kl-header-actions .kl-theme{
+   margin:0!important;
+ }
+ /* Inset the hero content so its border never touches the eyebrow or headline */
+ html.kl-public-mode .kl-reference-hero{
+   box-sizing:border-box!important;
+   padding:38px 30px 30px!important;
+   grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr)!important;
+   column-gap:35px!important;
+   row-gap:24px!important;
+   align-items:center!important;
+ }
+ html.kl-public-mode .kl-reference-hero .kl-hero-copy{
+   min-width:0!important;
+   padding:0!important;
+   margin:0!important;
+ }
+ html.kl-public-mode .kl-reference-hero .kl-eyebrow{
+   margin:0 0 16px!important;
+ }
+ html.kl-public-mode .kl-reference-hero h1{
+   margin-top:0!important;
+ }
+ html.kl-public-mode .kl-reference-hero .kl-hero-feature{
+   min-width:0!important;
+   width:100%!important;
+ }
+}
