@@ -587,3 +587,92 @@ html.kl-public-mode .kl-product-icon img{position:absolute!important;z-index:1!i
  html.kl-public-mode .kl-header-actions{gap:5px!important}
  html.kl-public-mode .kl-theme{width:29px!important;height:29px!important;min-width:29px!important;flex-basis:29px!important;font-size:17px!important}
 }
+
+
+/* Final desktop alignment: reserve a dedicated, non-overlapping search column */
+@media(min-width:981px){
+ html.kl-public-mode .kl-header{
+   display:grid!important;
+   grid-template-columns:165px minmax(520px,1fr) 260px 42px!important;
+   align-items:center!important;
+   justify-content:stretch!important;
+   column-gap:14px!important;
+   width:calc(100% - 48px)!important;
+   max-width:1240px!important;
+   box-sizing:border-box!important;
+   padding-left:24px!important;
+   padding-right:24px!important;
+ }
+ html.kl-public-mode .kl-header>.kl-brand{
+   grid-column:1!important;
+   width:165px!important;
+   min-width:0!important;
+   flex:none!important;
+   white-space:nowrap!important;
+ }
+ html.kl-public-mode .kl-header>.kl-nav{
+   grid-column:2!important;
+   display:flex!important;
+   position:static!important;
+   width:100%!important;
+   min-width:0!important;
+   max-width:none!important;
+   flex:none!important;
+   align-items:center!important;
+   justify-content:space-between!important;
+   gap:12px!important;
+   white-space:nowrap!important;
+   overflow:visible!important;
+ }
+ html.kl-public-mode .kl-header>.kl-nav>button,
+ html.kl-public-mode .kl-header>.kl-nav>.kl-nav-admin{
+   flex:0 0 auto!important;
+   min-width:max-content!important;
+   white-space:nowrap!important;
+ }
+ html.kl-public-mode .kl-header>.kl-header-search{
+   grid-column:3!important;
+   width:260px!important;
+   min-width:260px!important;
+   max-width:260px!important;
+   flex:none!important;
+   justify-self:stretch!important;
+   box-sizing:border-box!important;
+   margin:0!important;
+ }
+ html.kl-public-mode .kl-header>.kl-header-actions{
+   grid-column:4!important;
+   width:42px!important;
+   min-width:42px!important;
+   flex:none!important;
+   justify-self:end!important;
+   margin:0!important;
+ }
+ html.kl-public-mode .kl-header>.kl-header-actions .kl-theme{
+   margin:0!important;
+ }
+ /* Inset the hero content so its border never touches the eyebrow or headline */
+ html.kl-public-mode .kl-reference-hero{
+   box-sizing:border-box!important;
+   padding:38px 30px 30px!important;
+   grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr)!important;
+   column-gap:35px!important;
+   row-gap:24px!important;
+   align-items:center!important;
+ }
+ html.kl-public-mode .kl-reference-hero .kl-hero-copy{
+   min-width:0!important;
+   padding:0!important;
+   margin:0!important;
+ }
+ html.kl-public-mode .kl-reference-hero .kl-eyebrow{
+   margin:0 0 16px!important;
+ }
+ html.kl-public-mode .kl-reference-hero h1{
+   margin-top:0!important;
+ }
+ html.kl-public-mode .kl-reference-hero .kl-hero-feature{
+   min-width:0!important;
+   width:100%!important;
+ }
+}
