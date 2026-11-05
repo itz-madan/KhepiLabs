@@ -127,10 +127,14 @@ const isEntry = (value: unknown): value is Entry => {
     (entry.changelog === undefined || (Array.isArray(entry.changelog) && entry.changelog.every((item) => typeof item === "string")));
 };
 const safeExternalUrl = (value?: string) => {
-  if (!value) return undefined;
+  const raw = value?.trim();
+  if (!raw) return undefined;
   try {
-    const url = new URL(value, window.location.origin);
-    return url.protocol === "https:" || url.protocol === "http:" ? value : undefined;
+    // Admin entries often contain a bare domain (e.g. www.example.com).
+    // Normalize those to HTTPS instead of treating them as a path on this site.
+    const candidate = /^[a-z][a-z\d+.-]*:\/\//i.test(raw) ? raw : `https://${raw}`;
+    const url = new URL(candidate);
+    return url.protocol === "https:" || url.protocol === "http:" ? url.href : undefined;
   } catch {
     return undefined;
   }
