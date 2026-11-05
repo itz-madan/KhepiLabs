@@ -14,6 +14,7 @@ type Entry = {
   description?: string;
   icon?: string;
   iconFallback?: string;
+  iconFallback?: string;
   iconBg?: string;
   trending?: boolean;
   updated?: string;
