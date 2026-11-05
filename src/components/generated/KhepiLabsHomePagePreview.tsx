@@ -13,6 +13,7 @@ type Entry = {
   downloads?: string;
   description?: string;
   icon?: string;
+  iconFallback?: string;
   iconBg?: string;
   trending?: boolean;
   updated?: string;
@@ -178,7 +179,7 @@ function ProductIcon({
     chrome: "linear-gradient(135deg,#4285f4,#34a853 48%,#fbbc05 72%,#ea4335)",
     netflix: "linear-gradient(135deg,#e50914,#65000a)"
   };
-  const isCssBackground = /^(#([\\da-f]{3,8})|rgba?\\(|hsla?\\(|(linear|radial|conic)-gradient\\()/i.test(item.iconBg || "");
+  const isCssBackground = /^(#([\da-f]{3,8})|rgba?\(|hsla?\(|(linear|radial|conic)-gradient\()/i.test(item.iconBg || "");
   const background = brandBackgrounds[brand] || (isCssBackground ? item.iconBg! : "linear-gradient(135deg,#65758c,#293548)");
   const fallbackGlyph = item.iconFallback?.trim() || (!iconIsImage && rawIcon && rawIcon.length <= 3 ? rawIcon : "") || (brand === "youtube" ? "▶" : item.name.trim().slice(0, 1).toUpperCase()) || "K";
   return <div className={large ? "kl-product-icon large" : "kl-product-icon"} style={{background}}>
