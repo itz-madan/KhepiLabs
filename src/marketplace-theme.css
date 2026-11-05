@@ -752,3 +752,18 @@ html.kl-public-mode .kl-product-icon img{
  html.kl-public-mode .kl-theme{width:30px!important;height:30px!important;flex-basis:30px!important}
  html.kl-public-mode .kl-menu-toggle{width:28px!important;height:30px!important;flex-basis:28px!important;padding:0!important}
 }
+
+/* Explicit day-mode override: match the exact same nav metrics as night mode */
+html.kl-light.kl-public-mode .kl-header{height:72px!important;min-height:72px!important;display:grid!important;grid-template-columns:max-content minmax(390px,1fr) minmax(190px,220px) max-content!important;column-gap:clamp(12px,1.5vw,22px)!important}
+html.kl-light.kl-public-mode .kl-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr)) minmax(94px,max-content)!important;gap:6px!important;align-items:center!important}
+html.kl-light.kl-public-mode .kl-nav button,
+html.kl-light.kl-public-mode .kl-nav .kl-nav-admin{font:600 12px/1.1 inherit!important;min-height:36px!important;padding:6px 4px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important}
+html.kl-light.kl-public-mode .kl-theme{width:36px!important;height:36px!important;flex:0 0 36px!important;font-size:18px!important}
+@media(max-width:1100px){
+ html.kl-light.kl-public-mode .kl-header{height:68px!important;min-height:68px!important;grid-template-columns:max-content minmax(0,1fr) max-content!important}
+ html.kl-light.kl-public-mode .kl-nav{display:none!important}
+ html.kl-light.kl-public-mode .kl-nav.open{display:flex!important}
+}
+@media(max-width:560px){
+ html.kl-light.kl-public-mode .kl-header{height:64px!important;min-height:64px!important;grid-template-columns:max-content minmax(0,1fr) max-content!important}
+}
