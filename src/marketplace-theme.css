@@ -523,3 +523,39 @@ html.kl-public-mode .kl-reference-grid.kl-view-mixed .kl-reference-version{margi
  html.kl-public-mode .kl-footer-main{grid-template-columns:minmax(0,1fr)!important;gap:24px!important}
  html.kl-public-mode .kl-footer-bottom{flex-wrap:wrap;gap:8px 18px}
 }
+
+
+/* Follow-up QA: align nested sections to the main container and prevent tablet header crowding */
+@media(min-width:851px){
+ html.kl-public-mode .kl-header{max-width:1240px;padding-left:30px!important;padding-right:30px!important}
+ html.kl-public-mode .kl-menu-toggle{display:none!important}
+}
+@media(max-width:980px){
+ html.kl-public-mode .kl-header{height:68px!important;min-height:68px!important;padding:0 12px!important;gap:8px!important}
+ html.kl-public-mode .kl-brand{font-size:15px!important;gap:7px!important}
+ html.kl-public-mode .kl-brand-mark{width:31px!important;height:31px!important;flex-basis:31px!important}
+ html.kl-public-mode .kl-nav{display:none!important}
+ html.kl-public-mode .kl-nav.open{display:flex!important}
+ html.kl-public-mode .kl-menu-toggle{display:grid!important;place-items:center!important}
+ html.kl-public-mode .kl-header-search{display:flex!important;flex:1 1 auto!important;min-width:0!important;max-width:none!important;height:38px!important;margin:0!important}
+}
+@media(max-width:850px){
+ html.kl-public-mode .kl-reference-hero,
+ html.kl-public-mode .kl-category-pills,
+ html.kl-public-mode .kl-reference-catalog{width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important}
+ html.kl-public-mode .kl-reference-hero{padding-left:20px!important;padding-right:20px!important}
+ html.kl-public-mode .kl-category-pills{padding-left:16px!important;padding-right:16px!important}
+ html.kl-public-mode .kl-reference-catalog{padding-left:0!important;padding-right:0!important}
+ html.kl-public-mode .kl-bottom-cta{width:100%!important;margin-left:0!important;margin-right:0!important}
+}
+@media(max-width:560px){
+ html.kl-public-mode .kl-reference-hero{padding-left:16px!important;padding-right:16px!important}
+ html.kl-public-mode .kl-category-pills{padding-left:12px!important;padding-right:12px!important}
+ html.kl-public-mode .kl-reference-catalog{width:100%!important}
+ html.kl-public-mode .kl-bottom-cta{width:100%!important}
+ html.kl-public-mode .kl-footer-main>div{min-width:0}
+ html.kl-public-mode .kl-footer-main a{overflow-wrap:anywhere}
+}
+html.kl-public-mode .kl-product-icon{overflow:hidden}
+html.kl-public-mode .kl-product-icon img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
+html.kl-public-mode .kl-reference-app-card:focus-visible{outline:2px solid #22c55e;outline-offset:3px}
