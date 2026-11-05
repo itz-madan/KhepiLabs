@@ -116,7 +116,7 @@ const isEntry = (value: unknown): value is Entry => {
   const entry = value as Partial<Entry>;
   const optionalStrings: (keyof Entry)[] = [
     "version", "developer", "size", "rating", "downloads", "description",
-    "icon", "iconBg", "updated", "apk", "play"
+    "icon", "iconFallback", "iconBg", "updated", "apk", "play"
   ];
   return typeof entry.id === "string" && entry.id.trim().length > 0 &&
     typeof entry.name === "string" && entry.name.trim().length > 0 &&
@@ -166,7 +166,8 @@ function ProductIcon({
   item: Entry;
   large?: boolean;
 }) {
-  const iconIsImage = !!item.icon && (item.icon.startsWith("https://") || item.icon.startsWith("http://") || item.icon.startsWith("data:image/"));
+  const rawIcon = item.icon?.trim() || "";
+  const iconIsImage = /^(https?:\\/\\/|data:image\\/)/i.test(rawIcon);
   const brand = (item.iconBg || "").trim().toLowerCase();
   const brandBackgrounds: Record<string, string> = {
     youtube: "linear-gradient(135deg,#ff4545 0%,#c90024 100%)",
@@ -177,12 +178,12 @@ function ProductIcon({
     chrome: "linear-gradient(135deg,#4285f4,#34a853 48%,#fbbc05 72%,#ea4335)",
     netflix: "linear-gradient(135deg,#e50914,#65000a)"
   };
-  const isCssBackground = /^(#([\da-f]{3,8})|rgba?\(|hsla?\(|(linear|radial|conic)-gradient\()/i.test(item.iconBg || "");
+  const isCssBackground = /^(#([\\da-f]{3,8})|rgba?\\(|hsla?\\(|(linear|radial|conic)-gradient\\()/i.test(item.iconBg || "");
   const background = brandBackgrounds[brand] || (isCssBackground ? item.iconBg! : "linear-gradient(135deg,#65758c,#293548)");
-  const fallbackGlyph = !item.icon && brand === "youtube" ? "▶" : item.icon || item.name.trim().slice(0, 1).toUpperCase();
+  const fallbackGlyph = item.iconFallback?.trim() || (!iconIsImage && rawIcon && rawIcon.length <= 3 ? rawIcon : "") || (brand === "youtube" ? "▶" : item.name.trim().slice(0, 1).toUpperCase()) || "K";
   return <div className={large ? "kl-product-icon large" : "kl-product-icon"} style={{background}}>
     <span className="kl-product-icon-fallback" aria-hidden="true">{fallbackGlyph}</span>
-    {iconIsImage && <img src={item.icon} alt="" loading="lazy" onError={event => { event.currentTarget.style.display = "none"; }}/>}
+    {iconIsImage && <img src={rawIcon} alt="" loading="lazy" decoding="async" onError={event => { event.currentTarget.style.display = "none"; }}/>}
   </div>;
 }
 export function KhepiLabsHomePagePreview() {
