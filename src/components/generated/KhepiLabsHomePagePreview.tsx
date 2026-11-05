@@ -163,7 +163,23 @@ function ProductIcon({
   large?: boolean;
 }) {
   const iconIsImage = !!item.icon && (item.icon.startsWith("https://") || item.icon.startsWith("http://") || item.icon.startsWith("data:image/"));
-  return <div className={large ? "kl-product-icon large" : "kl-product-icon"} style={{background:item.iconBg || "linear-gradient(135deg,#65758c,#293548)"}}>{iconIsImage?<img src={item.icon} alt="" loading="lazy"/>:item.icon||item.name.slice(0,1)}</div>;
+  const brand = (item.iconBg || "").trim().toLowerCase();
+  const brandBackgrounds: Record<string, string> = {
+    youtube: "linear-gradient(135deg,#ff4545 0%,#c90024 100%)",
+    instagram: "linear-gradient(135deg,#ffb347 0%,#e1306c 52%,#833ab4 100%)",
+    spotify: "linear-gradient(135deg,#1ed760,#087b3b)",
+    telegram: "linear-gradient(135deg,#35baf2,#0878bd)",
+    whatsapp: "linear-gradient(135deg,#25d366,#087c48)",
+    chrome: "linear-gradient(135deg,#4285f4,#34a853 48%,#fbbc05 72%,#ea4335)",
+    netflix: "linear-gradient(135deg,#e50914,#65000a)"
+  };
+  const isCssBackground = /^(#([\da-f]{3,8})|rgba?\(|hsla?\(|(linear|radial|conic)-gradient\()/i.test(item.iconBg || "");
+  const background = brandBackgrounds[brand] || (isCssBackground ? item.iconBg! : "linear-gradient(135deg,#65758c,#293548)");
+  const fallbackGlyph = !item.icon && brand === "youtube" ? "▶" : item.icon || item.name.trim().slice(0, 1).toUpperCase();
+  return <div className={large ? "kl-product-icon large" : "kl-product-icon"} style={{background}}>
+    <span className="kl-product-icon-fallback" aria-hidden="true">{fallbackGlyph}</span>
+    {iconIsImage && <img src={item.icon} alt="" loading="lazy" onError={event => { event.currentTarget.style.display = "none"; }}/>}
+  </div>;
 }
 export function KhepiLabsHomePagePreview() {
   const [items, setItems] = useState<Entry[]>(() => {
