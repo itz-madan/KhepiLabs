@@ -167,7 +167,7 @@ function ProductIcon({
   large?: boolean;
 }) {
   const rawIcon = item.icon?.trim() || "";
-  const iconIsImage = /^(https?:\\/\\/|data:image\\/)/i.test(rawIcon);
+  const iconIsImage = rawIcon.startsWith("https://") || rawIcon.startsWith("http://") || rawIcon.startsWith("data:image/");
   const brand = (item.iconBg || "").trim().toLowerCase();
   const brandBackgrounds: Record<string, string> = {
     youtube: "linear-gradient(135deg,#ff4545 0%,#c90024 100%)",
