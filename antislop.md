@@ -13,6 +13,6 @@ For UI, copy, people, mobile layout, or code-comment work, load the matching Ant
 
 Before starting, follow the core skill's "Two Usage Modes" section: explicit session instruction first, then global preference, then ask. For a resolved mode, announce `antislop active: <mode> (session override).` or `antislop active: <mode> (global preference).` once, using the actual mode and source. Ask only when no mode is resolved.
 
-**Important installation note:** This pointer does not contain the six skill files. If they are absent from the repository, do not claim the full Anti-Slop skill set is installed or loaded. The project instructions require the agent to report that limitation.
+All six Anti-Slop skill files are present in this repository under `skills/`. Read the core skill first, then load the matching UI, copywriting, human, layout/mobile, or code skill for the task. The visual direction and Design Read are documented in `DESIGN.md`.
 
 Official upstream: https://github.com/miqdadbadjuber/anti-slop
