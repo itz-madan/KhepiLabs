@@ -676,3 +676,47 @@ html.kl-public-mode .kl-product-icon img{position:absolute!important;z-index:1!i
    width:100%!important;
  }
 }
+
+
+/* App publishing manager */
+.ka-publishing-manager{display:grid;gap:20px;min-width:0}
+.ka-app-picker{min-width:230px}
+.ka-app-picker select{min-width:220px}
+.ka-download-option-list{display:grid;gap:14px;margin-top:20px}
+.ka-download-option{border:1px solid var(--ka-border,#e5e7eb);border-radius:16px;padding:16px;background:var(--ka-card,#fff)}
+.ka-download-option-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.ka-download-option-top>b{margin-right:auto}
+.ka-inline-actions{display:flex;gap:6px}
+.ka-inline-actions button,.ka-description-section>div button{border:1px solid var(--ka-border,#e5e7eb);background:transparent;border-radius:8px;padding:6px;display:inline-flex;align-items:center;justify-content:center}
+.ka-add-download{display:flex;gap:8px;flex-wrap:wrap;max-width:100%}
+.ka-public-download-preview{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ka-public-download-preview>a{border:1px solid var(--ka-border,#e5e7eb);border-radius:999px;padding:10px 14px;text-decoration:none;color:inherit;font-size:13px}
+.ka-description-workspace{display:grid;grid-template-columns:minmax(210px,.72fr) minmax(0,1.8fr);gap:18px}
+.ka-description-sections{display:grid;align-content:start;gap:8px}
+.ka-description-section{border:1px solid var(--ka-border,#e5e7eb);border-radius:12px;padding:10px;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.ka-description-section.active{border-color:var(--ka-accent,#7968e8);background:rgba(125,105,232,.06)}
+.ka-description-section>button{border:0;background:none;text-align:left;color:inherit;font-weight:650}
+.ka-description-section label{font-size:11px;display:flex;gap:4px;align-items:center}
+.ka-description-section>div{grid-column:1/-1;display:flex;gap:6px}
+.ka-description-editor{min-width:0}
+.ka-editor-toolbar{display:flex;gap:5px;flex-wrap:wrap;padding:9px;border:1px solid var(--ka-border,#e5e7eb);border-radius:12px 12px 0 0;background:var(--ka-muted,#f8f8fb)}
+.ka-editor-toolbar button,.ka-editor-toolbar select{border:1px solid var(--ka-border,#e5e7eb);border-radius:7px;background:var(--ka-card,#fff);padding:6px 9px;color:inherit}
+.ka-editor-toolbar input[type=color]{width:30px;height:30px;border:0;background:transparent;padding:0}
+.ka-rich-editor{min-height:230px;padding:16px;border:1px solid var(--ka-border,#e5e7eb);border-top:0;border-radius:0 0 12px 12px;outline:none;line-height:1.65;background:var(--ka-card,#fff);color:var(--ka-text,inherit)}
+.ka-rich-editor:focus{box-shadow:inset 0 0 0 1px var(--ka-accent,#7968e8)}
+.ka-editor-note{font-size:11px;color:var(--ka-muted-text,#777);margin-top:8px}
+.ka-description-preview{border:1px solid var(--ka-border,#e5e7eb);border-radius:14px;padding:clamp(16px,3vw,28px);max-width:900px;line-height:1.7}
+.ka-description-preview section{margin-top:22px}
+.ka-description-preview h2,.ka-description-preview h3{margin:0 0 10px}
+.ka-rich-description{max-width:900px;margin:32px auto;display:grid;gap:26px}
+.ka-rich-description section{padding:24px;border:1px solid rgba(128,128,128,.18);border-radius:18px;background:rgba(128,128,128,.035);line-height:1.75;overflow-wrap:anywhere}
+.ka-rich-description h2{margin:0 0 12px;font-size:clamp(20px,3vw,27px)}
+.ka-rich-description p{margin:0 0 12px}
+.ka-rich-description ul,.ka-rich-description ol{padding-left:24px}
+.kl-advanced-downloads{margin-top:20px}
+.kl-advanced-downloads h3{font-size:14px;margin:0 0 10px}
+.kl-advanced-downloads>div{display:flex;flex-wrap:wrap;gap:8px}
+.kl-advanced-downloads a{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:inherit;border:1px solid rgba(128,128,128,.25);border-radius:12px;padding:10px 13px;min-width:130px}
+.kl-advanced-downloads a small{opacity:.7;font-size:11px}
+.kl-release-link{display:inline-block;margin-top:12px;font-size:13px}
+@media(max-width:760px){.ka-description-workspace{grid-template-columns:1fr}.ka-app-picker{width:100%}.ka-app-picker select{width:100%;min-width:0}.ka-download-option{padding:12px}.ka-modal-actions{align-items:stretch;flex-direction:column}.ka-add-download{width:100%}.ka-public-download-preview{align-items:stretch;flex-direction:column}.ka-public-download-preview>*{width:100%;text-align:center}.kl-advanced-downloads a{flex:1 1 42%}}
