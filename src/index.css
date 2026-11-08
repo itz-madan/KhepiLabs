@@ -233,7 +233,7 @@ main{max-width:1240px;margin:auto;padding:0 30px}.kl-hero{min-height:600px;paddi
 }
 
 
-/* KhepiLabs 2026 visual refresh — presentation only; interactions and data remain unchanged */
+/* KhepiLabs 2026 visual refresh - presentation only; interactions and data remain unchanged */
 :root{
   --bg:#080914;--panel:#111326;--panel2:#171a32;--text:#f4f2ff;--muted:#a3a0b8;
   --line:rgba(201,194,255,.13);--mint:#b7a5ff;--mint2:#8b78f5;
@@ -314,7 +314,7 @@ main{max-width:1240px;margin:auto;padding:0 30px}.kl-hero{min-height:600px;paddi
 @media(prefers-reduced-motion:reduce){.kl-card,.kl-primary,.kl-search-wrap{transition:none}}
 
 
-/* Public home refinement 02 — hierarchy, catalog cards and detail experience */
+/* Public home refinement 02 - hierarchy, catalog cards and detail experience */
 .kl-header{max-width:1320px;height:86px;padding-inline:clamp(20px,4vw,56px)}
 main{max-width:1320px}
 .kl-hero{min-height:500px;padding:88px 5% 76px}
@@ -425,7 +425,7 @@ main{max-width:1320px}
 }
 
 
-/* KhepiLabs Public Experience — complete polish pass */
+/* KhepiLabs Public Experience - complete polish pass */
 .kl-app{color:var(--text)}
 .kl-header{
   position:sticky;top:0;z-index:15;
@@ -650,7 +650,7 @@ main{max-width:1320px}
 .kag-back{display:block;margin-top:16px;text-align:center;color:#aaa5d2;font-size:11px;text-decoration:none}.kag-back:hover{color:#fff}
 
 
-/* KhepiLabs public pages — Square-inspired liquid glass system */
+/* KhepiLabs public pages - Square-inspired liquid glass system */
 :root{--kl-violet:#a78bfa;--kl-violet-soft:rgba(167,139,250,.14);--kl-glass-border:rgba(226,220,255,.14)}
 .kl-app{background:radial-gradient(ellipse at 78% 0%,rgba(126,95,190,.12),transparent 36%),#0c0d12}
 .kl-ambient-one{background:#7960b8;opacity:.13}.kl-ambient-two{background:#526e9e;opacity:.11}
@@ -907,7 +907,7 @@ main{max-width:1320px}
 }
 
 
-/* Mobile-first homepage glass composition — consistent edges and real backdrop */
+/* Mobile-first homepage glass composition - consistent edges and real backdrop */
 @media(max-width:850px){
   .kl-reference-hero{
     position:relative;
