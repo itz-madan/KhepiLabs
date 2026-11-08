@@ -1,4 +1,4 @@
-/* KhepiLabs marketplace visual refresh — light, content-first UI */
+/* KhepiLabs marketplace visual refresh - light, content-first UI */
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap');
 
 :root{font-family:'Figtree',system-ui,sans-serif}
@@ -161,7 +161,7 @@ html.kl-light.kl-public-mode .kl-menu-toggle{color:#111827}
  html.kl-public-mode .kl-nav button{display:flex;align-items:center;gap:12px;text-align:left;padding:12px 14px;border-radius:9px}
  html.kl-public-mode .kl-nav-icon{width:20px;text-align:center}
 }
-/* Dark marketplace theme — retain the refreshed layout, not the legacy neon skin. */
+/* Dark marketplace theme - retain the refreshed layout, not the legacy neon skin. */
 html:not(.kl-light).kl-public-mode{--bg:#10141b;--panel:#191f29;--panel2:#202733;--text:#f3f4f6;--muted:#a1aab7;--line:#303846;--mint:#22c55e;--mint2:#16a34a;background:#10141b;color:#f3f4f6;color-scheme:dark}
 html:not(.kl-light).kl-public-mode body,html:not(.kl-light).kl-public-mode .kl-app{background:#10141b;color:#f3f4f6}
 html:not(.kl-light).kl-public-mode .kl-header{background:#151a23;border-color:#303846;box-shadow:0 1px 2px rgba(0,0,0,.2)}
