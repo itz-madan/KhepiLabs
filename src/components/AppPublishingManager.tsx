@@ -31,6 +31,7 @@ const safeHtml = (html: string) => {
 };
 export function AppPublishingManager({ section, notify }: { section: "Download Settings" | "Description Editor"; notify: (message: string) => void }) {
   const [apps, setApps] = useState<AppRecord[]>([]);
+  const [loadError, setLoadError] = useState("");
   const [selectedId, setSelectedId] = useState("");
   const [busy, setBusy] = useState(false);
   const [options, setOptions] = useState<DownloadOption[]>([]);
@@ -41,7 +42,7 @@ export function AppPublishingManager({ section, notify }: { section: "Download S
   const [draft, setDraft] = useState(false);
   const editor = useRef<HTMLDivElement>(null);
   const selected = apps.find(a => a.id === selectedId);
-  useEffect(() => { void fetchAdminApps().then(rows => { setApps(rows as AppRecord[]); if (rows[0]) setSelectedId(rows[0].id); }).catch(e => notify("Could not load apps: " + e.message)); }, []);
+  useEffect(() => { let active = true; void fetchAdminApps().then(rows => { if (!active) return; setApps(rows as AppRecord[]); if (rows[0]) setSelectedId(rows[0].id); setLoadError(""); }).catch(e => { if (active) { setLoadError(e.message || "Could not load listings."); notify("Could not load apps: " + e.message); } }); return () => { active = false; }; }, []);
   useEffect(() => {
     if (!selected) return;
     const d = selected;
@@ -50,8 +51,9 @@ export function AppPublishingManager({ section, notify }: { section: "Download S
     setReleaseUrl(d.githubReleasesUrl || "");
     setPrimaryLabel(d.downloadButtonLabel || "Download for Android");
     const content = Array.isArray(d.descriptionSections) && d.descriptionSections.length ? d.descriptionSections : defaultSections();
-    setSections(content.map((s: any) => ({ id: s.id || uid(), title: s.title || "Section", html: safeHtml(s.html || ""), enabled: s.enabled !== false })));
-    setActiveSection(content[0]?.id || "");
+    const normalizedSections = content.map((s: any) => ({ id: s.id || uid(), title: s.title || "Section", html: safeHtml(s.html || ""), enabled: s.enabled !== false }));
+    setSections(normalizedSections);
+    setActiveSection(normalizedSections[0]?.id || "");
     setDraft(d.contentStatus === "draft");
   }, [selectedId, apps]);
   const currentSection = sections.find(s => s.id === activeSection);
@@ -83,7 +85,7 @@ export function AppPublishingManager({ section, notify }: { section: "Download S
   const addSection = () => { const s={id:uid(),title:"New section",html:"<p>Write your content here.</p>",enabled:true}; setSections(old=>[...old,s]);setActiveSection(s.id); };
   return <div className="ka-publishing-manager">
     <div className="ka-page-heading"><div><div className="ka-eyebrow">APPLICATION MANAGEMENT</div><h1>{section}<span>.</span></h1><p>{section === "Download Settings" ? "Configure independent GitHub release downloads for every app and game." : "Create structured, richly formatted descriptions with a live preview."}</p></div><label className="ka-field ka-app-picker">Select application<select value={selectedId} onChange={e=>setSelectedId(e.target.value)}>{apps.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}</select></label></div>
-    {!selected ? <section className="ka-panel ka-empty">No applications found. Add an app first.</section> : section === "Download Settings" ? <>
+    {loadError ? <section className="ka-panel ka-empty"><h3>Could not load listings</h3><p>{loadError}</p><button type="button" className="ka-filter-btn" onClick={()=>{setLoadError("");void fetchAdminApps().then(rows=>{setApps(rows as AppRecord[]);if(rows[0])setSelectedId(rows[0].id);}).catch(e=>setLoadError(e.message||"Could not load listings."));}}>Retry</button></section> : !selected ? <section className="ka-panel ka-empty">No applications found. Add an app first.</section> : section === "Download Settings" ? <>
       <section className="ka-panel"><div className="ka-panel-head"><div><h3>Primary download button</h3><p>Shown prominently on the public app page.</p></div></div><div className="ka-form-grid"><label className="ka-field">Button label<input value={primaryLabel} onChange={e=>setPrimaryLabel(e.target.value)} maxLength={48}/></label><label className="ka-field">GitHub Releases page URL<input value={releaseUrl} onChange={e=>setReleaseUrl(e.target.value)} placeholder="https://github.com/owner/repo/releases"/></label></div><div className="ka-download-option-list">{[...options].sort((a,b)=>a.order-b.order).map((o,i)=><div className="ka-download-option" key={o.id}><div className="ka-download-option-top"><b>{o.label}</b><label className="ka-check"><input type="checkbox" checked={o.enabled} onChange={e=>updateOption(o.id,{enabled:e.target.checked})}/> Enabled</label><div className="ka-inline-actions"><button type="button" onClick={()=>moveOption(o.id,-1)} disabled={i===0}><ChevronUp size={15}/></button><button type="button" onClick={()=>moveOption(o.id,1)} disabled={i===options.length-1}><ChevronDown size={15}/></button><button type="button" onClick={()=>setOptions(old=>old.filter(x=>x.id!==o.id))}><Trash2 size={15}/></button></div></div><div className="ka-form-grid"><label className="ka-field">Architecture<select value={o.key} onChange={e=>updateOption(o.id,{key:e.target.value,label:architectures.find(a=>a[0]===e.target.value)?.[1]||"Custom download"})}>{architectures.map(a=><option key={a[0]} value={a[0]}>{a[1]}</option>)}</select></label><label className="ka-field">Display name<input value={o.label} onChange={e=>updateOption(o.id,{label:e.target.value})}/></label><label className="ka-field ka-field-wide">GitHub / custom download URL<input value={o.url} onChange={e=>updateOption(o.id,{url:e.target.value})} placeholder="https://github.com/owner/repo/releases/latest/download/app.apk"/></label><label className="ka-field">Version<input value={o.version} onChange={e=>updateOption(o.id,{version:e.target.value})}/></label><label className="ka-field">File size (optional)<input value={o.size} onChange={e=>updateOption(o.id,{size:e.target.value})} placeholder="43.8 MB"/></label><label className="ka-check"><input type="radio" name="primary-download" checked={!!o.primary} onChange={()=>setOptions(old=>old.map(x=>({...x,primary:x.id===o.id})))}/> Use as primary download</label></div></div>)}</div><div className="ka-modal-actions"><div className="ka-add-download">{architectures.map(a=><button type="button" className="ka-filter-btn" key={a[0]} onClick={()=>addOption(a[0])}><Plus size={14}/>{a[1]}</button>)}</div><button className="ka-primary" disabled={busy} onClick={()=>void save(true)}><Save size={15}/>{busy?"Saving…":"Save download settings"}</button></div></section>
       <section className="ka-panel"><div className="ka-panel-head"><div><h3>Public download preview</h3><p>Only enabled options with configured URLs will appear.</p></div></div><div className="ka-public-download-preview"><button className="ka-primary" disabled={!enabledOptions.length}>{primaryLabel} · {selected.version || "Latest"}</button>{enabledOptions.map(o=><a key={o.id} href={o.url||undefined} target="_blank" rel="noreferrer">{o.label} {o.version && "· v"+o.version} {o.size && "· "+o.size}</a>)}{releaseUrl&&<a href={releaseUrl} target="_blank" rel="noreferrer">View all releases ↗</a>}</div></section>
     </> : <>
