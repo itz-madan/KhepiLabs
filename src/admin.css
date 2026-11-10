@@ -31,3 +31,31 @@
 .ka-topbar{background:#0b0e15;border-bottom-color:rgba(173,187,218,.16)}
 .ka-float{background:#242d3b;border-color:#465368;color:#d7e3dc}
 .ka-modal-backdrop{backdrop-filter:blur(8px)}
+
+/* KhepiLabs marketplace palette carried into the admin workspace */
+.ka-shell{--ka-bg:#f3f5f4;--ka-panel:#fff;--ka-panel2:#f7faf8;--ka-line:#e2e9e5;--ka-text:#17211c;--ka-muted:#637169;--ka-purple:#16865d;--ka-cyan:#62b998;background:var(--ka-bg);color:var(--ka-text);font-family:'Figtree',system-ui,sans-serif}
+.ka-sidebar{background:#fff;border-right-color:var(--ka-line)}.ka-brand{color:#17211c}.ka-brand>span:last-child>span{color:#16865d}.ka-brand small{color:#738078}
+.ka-brand-mark{background:#d9f4e8;box-shadow:none}.ka-brand-mark span{border-color:#176b4d}
+.ka-workspace{background:#f7faf8;border-color:var(--ka-line)}.ka-workspace-avatar,.ka-avatar{background:#d9f4e8;color:#176b4d}
+.ka-nav-group label{color:#77847c}.ka-nav-group button{color:#59675f}.ka-nav-group button:hover{background:#f1f7f3;color:#1a3327}.ka-nav-group button.active{background:#e8f7ef;color:#176b4d;box-shadow:inset 2px 0 #22a06a}
+.ka-help{color:#176b4d}.ka-help b{color:#263a30}.ka-topbar{background:rgba(255,255,255,.96);border-bottom-color:var(--ka-line)}.ka-breadcrumb b{color:#1a2c22}
+.ka-preview-pill{color:#176b4d;background:#e8f7ef;border-color:#ccebd9}.ka-view-site{color:#176b4d}.ka-page-heading h1 span{color:#16865d}.ka-eyebrow{color:#16865d}
+.ka-primary{background:#16865d;border-color:#16865d;color:#fff;box-shadow:none}.ka-primary:hover{background:#116c49;filter:none}
+.ka-welcome{background:#eaf7f0;border-color:#d6ebdf;color:#173326}.ka-welcome-tag{color:#176b4d}.ka-welcome h2 em{color:#16865d}.ka-welcome p{color:#52665b}.ka-welcome button{background:#16865d;color:#fff}
+.ka-orbit{border-color:#7ebda0}.ka-orbit-core{background:#16865d;box-shadow:none}.ka-float{background:#fff;border-color:#cce4d6;color:#176b4d}
+.ka-stat,.ka-panel,.ka-module-card{background:var(--ka-panel);border-color:var(--ka-line);box-shadow:0 1px 2px rgba(19,48,33,.035)}.ka-stat-top>span,.ka-module-icon{background:#e8f7ef;color:#176b4d}
+.ka-stat>strong{color:#17211c}.ka-stat-bottom i{color:#16865d}.ka-soft-tag{color:#176b4d;background:#e8f7ef;border-color:#d3ecdd}
+.ka-chart-legend,.ka-chart-y,.ka-chart-x,.ka-chart-foot,.ka-table-wrap th{color:#728078}.ka-chart-legend>span i{background:#16865d}.ka-chart-legend>span:nth-child(2) i{background:#62b998}
+.ka-chart-legend select,.ka-field input,.ka-field select,.ka-field textarea,.ka-table-search{background:#fff;border-color:var(--ka-line);color:#17211c}.ka-grid-lines i{border-color:#e8eeea}.ka-chart-area svg path:last-child{stroke:#16865d}
+.ka-table-wrap td{color:#58675f;border-bottom-color:#edf1ee}.ka-table-wrap th{border-bottom-color:var(--ka-line)}.ka-app-cell b{color:#1b2a21}.ka-app-cell small{color:#748078}
+.ka-app-icon{background:#e8f7ef!important;color:#176b4d}.ka-status{color:#16865d}.ka-status i{background:#2eaa75;box-shadow:none}
+.ka-row-action,.ka-actions button,.ka-filter-btn{background:#fff;border-color:var(--ka-line);color:#52645a}.ka-actions button:hover,.ka-row-action:hover{color:#176b4d;border-color:#9bcdb1}
+.ka-module-card button,.ka-text-btn,.ka-file-link{color:#176b4d}.ka-module-feature{background:#f7fbf8}
+.ka-modal{background:#fff;border-color:var(--ka-line);box-shadow:0 20px 60px rgba(18,45,31,.18)}.ka-modal-head h2,.ka-field{color:#24372c}.ka-modal-head p{color:#66756c}
+.ka-modal-backdrop{background:rgba(11,25,17,.56)}.ka-toast{background:#173b2a;border-color:#286e4c;color:#fff}
+.ka-empty{color:#637169}.ka-empty h2,.ka-empty h3{color:#1d3025}.ka-download-tabs button.active{color:#176b4d;background:#e8f7ef;border-color:#ccebd9}
+.ka-screenshot-manager{background:#f7faf8;border-color:var(--ka-line)}.ka-screenshot-thumb{background:#fff;border-color:var(--ka-line)}.ka-screenshot-thumb button{background:#f1f6f3;color:#263d30;border-color:var(--ka-line)}
+.ka-error-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background:#f3f5f4;color:#17211c;font-family:'Figtree',system-ui,sans-serif}.ka-error-screen section{max-width:520px;padding:30px;background:#fff;border:1px solid #e2e9e5;border-radius:14px}.ka-error-screen h1{font-size:24px;margin:0 0 12px}.ka-error-screen p{color:#637169;line-height:1.65}.ka-error-screen button{border:0;background:#16865d;color:#fff;padding:11px 16px;border-radius:7px}
+.ka-shell button:focus-visible,.ka-shell a:focus-visible,.ka-shell input:focus-visible,.ka-shell select:focus-visible,.ka-shell textarea:focus-visible{outline:3px solid #16865d;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.ka-shell,.ka-shell *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media(max-width:760px){.ka-sidebar{background:#fff}.ka-scrim{background:rgba(13,32,22,.45)}}
