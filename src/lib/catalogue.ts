@@ -1,9 +1,11 @@
 import { supabase } from "./supabase";
 
+export type CatalogueDownloadOption = { id?:string; key?:string; label?:string; url?:string; version?:string; size?:string; enabled?:boolean; order?:number; primary?:boolean };
+
 export type CatalogueEntry = {
   id: string; name: string; kind: "App" | "Game"; category: string;
   version?: string; developer?: string; size?: string; rating?: string;
-  downloads?: string; description?: string; icon?: string; iconBg?: string;
+  downloads?: string | CatalogueDownloadOption[]; description?: string; icon?: string; iconBg?: string;
   trending?: boolean; updated?: string; apk?: string; play?: string;
   screenshots?: string[]; changelog?: string[]; status?: string;
 };
