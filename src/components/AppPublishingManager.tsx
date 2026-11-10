@@ -29,7 +29,7 @@ const safeHtml = (html: string) => {
   });
   return doc.body.innerHTML;
 };
-export function AppPublishingManager({ section, notify }: { section: "Download Settings" | "Description Editor"; notify: (message: string) => void }) {
+export function AppPublishingManager({ section, notify, initialAppId = "" }: { section: "Download Settings" | "Description Editor"; notify: (message: string) => void; initialAppId?: string }) {
   const [apps, setApps] = useState<AppRecord[]>([]);
   const [loadError, setLoadError] = useState("");
   const [selectedId, setSelectedId] = useState("");
@@ -42,7 +42,7 @@ export function AppPublishingManager({ section, notify }: { section: "Download S
   const [draft, setDraft] = useState(false);
   const editor = useRef<HTMLDivElement>(null);
   const selected = apps.find(a => a.id === selectedId);
-  useEffect(() => { let active = true; void fetchAdminApps().then(rows => { if (!active) return; setApps(rows as AppRecord[]); if (rows[0]) setSelectedId(rows[0].id); setLoadError(""); }).catch(e => { if (active) { setLoadError(e.message || "Could not load listings."); notify("Could not load apps: " + e.message); } }); return () => { active = false; }; }, []);
+  useEffect(() => { let active = true; void fetchAdminApps().then(rows => { if (!active) return; setApps(rows as AppRecord[]); if (rows[0]) setSelectedId(initialAppId && rows.some((row:any)=>row.id===initialAppId) ? initialAppId : rows[0].id); setLoadError(""); }).catch(e => { if (active) { setLoadError(e.message || "Could not load listings."); notify("Could not load apps: " + e.message); } }); return () => { active = false; }; }, []);
   useEffect(() => {
     if (!selected) return;
     const d = selected;
