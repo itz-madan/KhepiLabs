@@ -186,23 +186,20 @@ function ProductIcon({
   </div>;
 }
 export function KhepiLabsHomePagePreview() {
-  const [items, setItems] = useState<Entry[]>(() => {
-    try {
-      return parseEntries(localStorage.getItem("khl-preview-items")) ?? demo;
-    } catch {
-      return demo;
-    }
-  });
+  const [items, setItems] = useState<Entry[]>([]);
+  const [catalogueLoading, setCatalogueLoading] = useState(true);
+  const [catalogueError, setCatalogueError] = useState("");
   const [dark, setDark] = useState(() => { try { return localStorage.getItem("khl-theme") === "dark"; } catch { return false; } });
   useEffect(() => {
     let alive = true;
     const load = async () => {
       try {
         const rows = await fetchPublishedApps();
-        if (alive) setItems(rows as Entry[]);
+        if (alive) { setItems(rows as Entry[]); setCatalogueError(""); }
       } catch (error) {
         console.error("KhepiLabs catalogue connection failed", error);
-      }
+        if (alive) setCatalogueError(error instanceof Error ? error.message : "Could not load the live catalogue.");
+      } finally { if (alive) setCatalogueLoading(false); }
     };
     void load();
     const channel = subscribeToApps(() => void load());
@@ -246,18 +243,6 @@ export function KhepiLabsHomePagePreview() {
   const published = items;
   const trending = published.filter(x => x.trending);
   const toastTimerRef = useRef<number | null>(null);
-  useEffect(() => {
-    try { localStorage.setItem("khl-preview-items", JSON.stringify(items)); } catch { /* storage can be unavailable or full */ }
-  }, [items]);
-  useEffect(() => {
-    const syncFromOtherTab = (event: StorageEvent) => {
-      if (event.key !== "khl-preview-items") return;
-      const next = parseEntries(event.newValue);
-      setItems(next ?? demo);
-    };
-    window.addEventListener("storage", syncFromOtherTab);
-    return () => window.removeEventListener("storage", syncFromOtherTab);
-  }, []);
   useEffect(() => {
     document.documentElement.classList.toggle("kl-light", !dark);
     try { localStorage.setItem("khl-theme", dark ? "dark" : "light"); } catch { /* ignore unavailable storage */ }
@@ -441,7 +426,7 @@ export function KhepiLabsHomePagePreview() {
       <section className="kl-catalog kl-reference-catalog" id="catalog">
         <div className="kl-reference-catalog-heading"><div><h2>Featured Apps</h2><p>Handpicked apps for a better Android experience</p></div><div className="kl-reference-view"><span>View:</span><div className="kl-view-picker"><button className="kl-view-picker-trigger" aria-expanded={viewMenuOpen} onClick={()=>setViewMenuOpen(v=>!v)}><span>{viewMode==="list"?"☷":viewMode==="grid"?"▦":viewMode==="card"?"▣":"◫"}</span><b>{viewMode[0].toUpperCase()+viewMode.slice(1)}</b><i>⌄</i></button>{viewMenuOpen&&<><button className="kl-view-dismiss" aria-label="Close view selector" onClick={()=>setViewMenuOpen(false)}/><div className="kl-view-menu">{(["grid","list","card","mixed"] as const).map(mode=><button key={mode} className={viewMode===mode?"active":""} onClick={()=>{setViewMode(mode);setViewMenuOpen(false);}}><span>{mode==="list"?"☷":mode==="grid"?"▦":mode==="card"?"▣":"◫"}</span>{mode[0].toUpperCase()+mode.slice(1)} View{viewMode===mode&&<b>✓</b>}</button>)}</div></>}</div></div></div>
         <div className={"kl-product-grid kl-reference-grid kl-view-"+viewMode}>{filtered.map(p=><article key={p.id} className="kl-reference-app-card" role="button" tabIndex={0} aria-label={`View ${p.name} details`} onClick={()=>open(p)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open(p);}}}><ProductIcon item={p}/><div className="kl-reference-app-info"><h3>{p.name}</h3><p className="kl-reference-version">{p.version ? `Version ${p.version}` : "Version not specified"}</p></div></article>)}</div>
-        {!filtered.length&&<div className="kl-empty"><span>⌕</span><h3>No matching apps found.</h3><p>Try another search or category.</p><button onClick={()=>{setSearch("");setCategory("All");setActive("All");}}>Clear filters</button></div>}
+        {!filtered.length&&<div className="kl-empty"><span>⌕</span><h3>{catalogueLoading?"Loading the live catalogue…":catalogueError?"Catalogue temporarily unavailable":"No matching apps found."}</h3><p>{catalogueError?"The live catalogue could not be reached. Please try again shortly.":"Try another search or category."}</p>{!catalogueLoading&&!catalogueError&&<button onClick={()=>{setSearch("");setCategory("All");setActive("All");}}>Clear filters</button>}</div>}
       </section>
       <section className="kl-bottom-cta"><div className="kl-cta-glow" /><div className="kl-eyebrow">A LITTLE MORE DISCOVERY</div><h2>Good finds deserve<br /><em>to be shared.</em></h2><p>Know something worth discovering? Let’s put it on the map.</p><button className="kl-primary" onClick={() => notify("Submission portal will be available soon")}>Suggest an app <span>↗</span></button></section>
     </main>
