@@ -789,3 +789,8 @@ html.kl-public-mode .kl-public-main-collections .kl-public-sections{display:bloc
  html.kl-public-mode .kl-public-copy h1{font-size:42px}
  html.kl-public-mode .kl-public-badges>span{flex:1 1 100%}
 }
+
+/* Smooth theme transitions are limited to visible colour and surface changes. */
+.kl-app,.kl-app .kl-header,.kl-app .kl-reference-hero,.kl-app .kl-hero-feature,.kl-app .kl-reference-app-card,.kl-app .kl-category-pills button,.kl-app .kl-bottom-cta,.kl-app .kl-site-footer,.kl-app .kl-detail-overlay,.kl-app .kl-detail-panel{transition:background-color .24s ease,color .24s ease,border-color .24s ease,box-shadow .24s ease}
+.kl-app :focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.kl-app,.kl-app *{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
