@@ -16,7 +16,8 @@ const configs:Record<string,Config>={
 "Reviews":{table:"app_ratings",title:"App ratings",description:"Review ratings submitted for published apps.",readonly:true,sortColumn:"created_at"}
 };
 export function ContentManager({section,notify}:{section:string;notify:(s:string)=>void}){
- const config=configs[section]||configs.Categories;
+ const config=configs[section];
+ if(!config)return <section className="ka-panel ka-empty"><h2>Section unavailable</h2><p>No data configuration exists for “{section}”. No database records were changed.</p></section>;
  const [rows,setRows]=useState<any[]>([]);
  const [loading,setLoading]=useState(true);
  const [editing,setEditing]=useState<any|null>(null);
@@ -26,7 +27,7 @@ export function ContentManager({section,notify}:{section:string;notify:(s:string
  const [active,setActive]=useState(true);
  const [visible,setVisible]=useState(true);
  const [busy,setBusy]=useState(false);
- const load=async()=>{setLoading(true);let query=supabase.from(config.table).select("*").order(config.sortColumn||"updated_at",{ascending:false});const {data,error}=await query;if(error)notify("Load failed: "+error.message);else setRows(data||[]);setLoading(false);};
+ const load=async()=>{setLoading(true);try{const {data,error}=await supabase.from(config.table).select("*").order(config.sortColumn||"updated_at",{ascending:false});if(error){setRows([]);notify("Could not load "+config.title+": "+error.message);}else setRows(data||[]);}catch(error:any){setRows([]);notify("Could not load "+config.title+": "+(error?.message||"Unexpected database error"));}finally{setLoading(false);}};
  useEffect(()=>{setEditing(null);void load();},[config.table]);
  const open=(row?:any)=>{setEditorOpen(true);setEditing(row||null);setId(row?.id||"");setJson(JSON.stringify(row?.data||{},null,2));setActive(row?.[config.activeColumn||"is_active"]??true);setVisible(row?.[config.visibleColumn||"is_visible"]??true);};
  const save=async()=>{let data:any;try{data=JSON.parse(json);if(!data||typeof data!=="object"||Array.isArray(data))throw new Error("JSON must be an object");}catch(e:any){notify("Invalid JSON: "+e.message);return;}if(!id.trim()){notify("Record ID is required");return;}setBusy(true);const payload:any={id:id.trim(),data,updated_at:new Date().toISOString()};if(config.activeColumn)payload[config.activeColumn]=active;if(config.visibleColumn)payload[config.visibleColumn]=visible;if(config.table==="app_versions"&&!data.app_id){notify("Add app_id inside JSON for version records");setBusy(false);return;}if(config.table==="app_versions"){payload.app_id=String(data.app_id);delete payload.data.app_id;}const {error}=await supabase.from(config.table).upsert(payload,{onConflict:"id"});setBusy(false);if(error){notify("Save failed: "+error.message);return;}notify("Saved to Supabase");setEditing(null);setEditorOpen(false);void load();};
